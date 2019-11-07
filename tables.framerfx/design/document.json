@@ -1,0 +1,210 @@
+{
+  "root" : {
+    "__class" : "RootNode",
+    "children" : [
+      {
+        "__class" : "FrameNode",
+        "aspectRatio" : null,
+        "blendingEnabled" : 0,
+        "blendingMode" : "normal",
+        "bottom" : null,
+        "centerAnchorX" : 0,
+        "centerAnchorY" : 0,
+        "children" : [
+          {
+            "__class" : "FrameNode",
+            "aspectRatio" : null,
+            "blendingEnabled" : 0,
+            "blendingMode" : "normal",
+            "bottom" : 7,
+            "centerAnchorX" : 0.34449760765550241,
+            "centerAnchorY" : 0.49375000000000002,
+            "children" : [
+
+            ],
+            "clip" : false,
+            "codeOverrideEnabled" : false,
+            "constraintsLocked" : false,
+            "deviceType" : null,
+            "exportOptions" : [
+
+            ],
+            "fillColor" : "rgba(0, 153, 255, 0.5)",
+            "fillEnabled" : true,
+            "fillImage" : "iBsiAunFLOhL1HoOJY1rOJWQmkU.png",
+            "fillImageOriginalName" : "content_finish_8_day_course (1).png",
+            "fillImagePixelHeight" : 727,
+            "fillImagePixelWidth" : 1000,
+            "fillImageResize" : "fill",
+            "fillType" : "image",
+            "guidesX" : [
+
+            ],
+            "guidesY" : [
+
+            ],
+            "height" : 67,
+            "heightType" : 0,
+            "id" : "v6UHz9w0Q",
+            "intrinsicHeight" : 28.61891744122471,
+            "intrinsicWidth" : 39.365773646801529,
+            "isExternalMaster" : null,
+            "isMaster" : false,
+            "isTarget" : true,
+            "left" : 8,
+            "locked" : false,
+            "name" : "photo",
+            "navigationTarget" : null,
+            "navigationTransition" : "push",
+            "navigationTransitionBackdropColor" : "rgba(4,4,15,.4)",
+            "navigationTransitionDirection" : "left",
+            "opacity" : 1,
+            "originalid" : null,
+            "parentid" : "szryaTAgw",
+            "previewSettings" : null,
+            "radius" : 9,
+            "radiusBottomLeft" : 9,
+            "radiusBottomRight" : 9,
+            "radiusIsRelative" : false,
+            "radiusPerCorner" : false,
+            "radiusTopLeft" : 9,
+            "radiusTopRight" : 9,
+            "replicaInfo" : null,
+            "right" : null,
+            "rotation" : 0,
+            "top" : 6,
+            "visible" : true,
+            "width" : 128,
+            "widthType" : 0
+          }
+        ],
+        "clip" : true,
+        "codeOverrideEnabled" : false,
+        "constraintsLocked" : false,
+        "deviceType" : null,
+        "exportOptions" : [
+
+        ],
+        "fillColor" : "white",
+        "fillEnabled" : true,
+        "fillImage" : null,
+        "fillImageOriginalName" : null,
+        "fillImagePixelHeight" : null,
+        "fillImagePixelWidth" : null,
+        "fillImageResize" : "fill",
+        "fillType" : "color",
+        "guidesX" : [
+
+        ],
+        "guidesY" : [
+
+        ],
+        "height" : 80,
+        "heightType" : 0,
+        "id" : "szryaTAgw",
+        "intrinsicHeight" : null,
+        "intrinsicWidth" : null,
+        "isExternalMaster" : null,
+        "isMaster" : true,
+        "isTarget" : false,
+        "left" : 471,
+        "locked" : false,
+        "name" : "PhotoCell",
+        "navigationTarget" : null,
+        "navigationTransition" : "push",
+        "navigationTransitionBackdropColor" : "rgba(4,4,15,.4)",
+        "navigationTransitionDirection" : "left",
+        "opacity" : 1,
+        "originalid" : null,
+        "parentid" : "U8ngYz_sq",
+        "previewSettings" : null,
+        "radius" : 16,
+        "radiusBottomLeft" : 16,
+        "radiusBottomRight" : 16,
+        "radiusIsRelative" : false,
+        "radiusPerCorner" : false,
+        "radiusTopLeft" : 16,
+        "radiusTopRight" : 16,
+        "replicaInfo" : null,
+        "right" : null,
+        "rotation" : 0,
+        "top" : 150,
+        "visible" : true,
+        "width" : 209,
+        "widthType" : 0
+      },
+      {
+        "__class" : "CodeComponentNode",
+        "aspectRatio" : null,
+        "bottom" : null,
+        "centerAnchorX" : 0,
+        "centerAnchorY" : 0,
+        "children" : [
+
+        ],
+        "clip" : true,
+        "codeComponentIdentifier" : ".\/Table.tsx_Table",
+        "codeComponentProps" : {
+
+        },
+        "codeOverrideEnabled" : false,
+        "constraintsLocked" : false,
+        "deviceType" : null,
+        "exportOptions" : [
+
+        ],
+        "fillColor" : "rgba(255,255,255,1)",
+        "fillEnabled" : false,
+        "fillImage" : null,
+        "fillImageOriginalName" : null,
+        "fillImagePixelHeight" : null,
+        "fillImagePixelWidth" : null,
+        "fillImageResize" : "fill",
+        "fillType" : "color",
+        "height" : 800,
+        "heightType" : 0,
+        "id" : "GwPtcHBOh",
+        "intrinsicHeight" : 800,
+        "intrinsicWidth" : 600,
+        "left" : 351,
+        "locked" : false,
+        "name" : null,
+        "opacity" : 1,
+        "originalid" : null,
+        "parentid" : "U8ngYz_sq",
+        "previewSettings" : null,
+        "radius" : 0,
+        "radiusBottomLeft" : 0,
+        "radiusBottomRight" : 0,
+        "radiusIsRelative" : false,
+        "radiusPerCorner" : false,
+        "radiusTopLeft" : 0,
+        "radiusTopRight" : 0,
+        "right" : null,
+        "rotation" : 0,
+        "top" : 315,
+        "visible" : true,
+        "width" : 600,
+        "widthType" : 0
+      }
+    ],
+    "guidesX" : [
+
+    ],
+    "guidesY" : [
+
+    ],
+    "id" : "U8ngYz_sq",
+    "name" : null,
+    "originalid" : null,
+    "parentid" : null,
+    "tokens" : {
+
+    },
+    "tokensIndex" : [
+
+    ],
+    "visible" : false
+  },
+  "version" : 55
+}

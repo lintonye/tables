@@ -1,0 +1,21 @@
+{
+	"main": "dist/index.js",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/react": "^16.8"
+	},
+	"peerDependencies": {
+		"framer": "^1.0",
+		"react": "^16.8"
+	},
+	"framer": {
+		"id": "96a82607-7269-40ef-8dbb-508fbea51218"
+	},
+	"author": "Linton Ye",
+	"dependencies": {
+		"react": "^16.11.0",
+		"react-dom": "^16.11.0",
+		"react-table": "^7.0.0-beta.12",
+		"styled-components": "^4.4.1"
+	}
+}
