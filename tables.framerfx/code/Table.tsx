@@ -2,39 +2,63 @@ import * as React from "react"
 import { Frame, addPropertyControls, ControlType, RenderTarget } from "framer"
 import { useTable } from "react-table"
 import { PhotoCell } from "./canvas"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import * as defaultData from "./defaultData.json"
 
 const Styles = styled.div`
-  width: 100%;
-  background: ${({ fill }) => fill};
-  font-size: ${({ fontSize }) => fontSize}px;
-  color: ${({ color }) => color};
-  table {
+  ${({
+    fill,
+    fontSize,
+    color,
+    headerColor,
+    headerBgColor,
+    headerFontSize,
+    headerDividerWidth,
+    headerDividerColor,
+    borderWidth,
+    borderColor,
+    dividerType,
+    dividerWidth,
+    dividerColor
+  }) => css`
     width: 100%;
-    border-spacing: 0;
-    border: 1px solid black;
-
-    tr {
-      :last-child {
-        td {
-          border-bottom: 0;
+    background: ${fill};
+    font-size: ${fontSize}px;
+    color: ${color};
+    table {
+      width: 100%;
+      border-spacing: 0;
+      border: ${borderWidth}px solid ${borderColor};
+      tr {
+        :last-child {
+          td {
+            border-bottom: 0;
+          }
         }
       }
-    }
+      th {
+        color: ${headerColor};
+        background: ${headerBgColor};
+        font-size: ${headerFontSize}px;
+      }
+      th,
+      td {
+        margin: 0;
+        padding: 0.5rem;
+        border-bottom: ${dividerType === "vertical" ? 0 : dividerWidth}px solid
+          ${dividerColor};
+        border-right: ${dividerType === "horizontal" ? 0 : dividerWidth}px solid
+          ${dividerColor};
 
-    th,
-    td {
-      margin: 0;
-      padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
-
-      :last-child {
-        border-right: 0;
+        :last-child {
+          border-right: 0;
+        }
+      }
+      th {
+        border-bottom: ${headerDividerWidth}px solid ${headerDividerColor};
       }
     }
-  }
+  `}
 `
 function GridThumbnail({ size = 24 }) {
   return (
@@ -208,6 +232,65 @@ addPropertyControls(Table, {
     title: "Text",
     type: ControlType.Color,
     defaultValue: "black"
+  },
+  headerFontSize: {
+    title: "Header Font",
+    type: ControlType.Number,
+    min: 8,
+    max: 60,
+    defaultValue: 12
+  },
+  headerColor: {
+    title: "Header FG",
+    type: ControlType.Color,
+    defaultValue: "black"
+  },
+  headerBgColor: {
+    title: "Header BG",
+    type: ControlType.Color,
+    defaultValue: "transparent"
+  },
+  headerDividerWidth: {
+    title: "Header Divider",
+    type: ControlType.Number,
+    min: 0,
+    max: 4,
+    defaultValue: 1
+  },
+  headerDividerColor: {
+    title: "Header Divider",
+    type: ControlType.Color,
+    defaultValue: "#DDD"
+  },
+  borderWidth: {
+    title: "Border",
+    type: ControlType.Number,
+    min: 0,
+    max: 4,
+    defaultValue: 1
+  },
+  borderColor: {
+    title: "Border",
+    type: ControlType.Color,
+    defaultValue: "#DDD"
+  },
+  dividerType: {
+    title: "Divider",
+    type: ControlType.Enum,
+    options: ["both", "horizontal", "vertical"],
+    defaultValue: "both"
+  },
+  dividerWidth: {
+    title: "Divider",
+    type: ControlType.Number,
+    min: 0,
+    max: 4,
+    defaultValue: 1
+  },
+  dividerColor: {
+    title: "Divider",
+    type: ControlType.Color,
+    defaultValue: "#DDD"
   },
   canvasOverride: {
     title: "Canvas Override",
