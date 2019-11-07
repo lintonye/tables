@@ -102,14 +102,19 @@ function TableUI({ columns, data }) {
   )
 }
 
-function createColumns(data, columnsOverride) {
+function createColumns(data, columnsOverride = []) {
   if (Array.isArray(data) && data.length > 0) {
+    function findColumnOverride(accessor) {
+      if (Array.isArray(columnsOverride)) {
+        return columnsOverride.find(c => c.accessor === accessor)
+      } else return null
+    }
     // infer columns from the first row
     const row = data[0]
     return Object.keys(row).reduce((columns, key) => {
       return [
         ...columns,
-        {
+        findColumnOverride(key) || {
           Header: key,
           accessor: key,
           align: Number.isFinite(row[key]) ? "right" : "left"
@@ -133,7 +138,8 @@ export function Table(props) {
     dataUrl && loadData()
   }, [dataUrl])
   const mergedColumns = React.useMemo(() => createColumns(data, columns), [
-    data
+    data,
+    columns
   ])
   return RenderTarget.current() === RenderTarget.thumbnail ? (
     <GridThumbnail size={400} />
