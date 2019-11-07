@@ -7,6 +7,9 @@ import * as defaultData from "./defaultData.json"
 
 const Styles = styled.div`
   width: 100%;
+  background: ${({ fill }) => fill};
+  font-size: ${({ fontSize }) => fontSize}px;
+  color: ${({ color }) => color};
   table {
     width: 100%;
     border-spacing: 0;
@@ -171,7 +174,7 @@ export function Table(props) {
   ) : data === "loading" ? (
     <div>Loading...</div>
   ) : (
-    <Styles>
+    <Styles {...rest}>
       <TableUI columns={mergedColumns} data={data} />
     </Styles>
   )
@@ -188,6 +191,23 @@ addPropertyControls(Table, {
     title: "Data",
     type: ControlType.File,
     allowedFileTypes: ["json"]
+  },
+  fill: {
+    title: "Fill",
+    type: ControlType.Color,
+    defaultValue: "transparent"
+  },
+  fontSize: {
+    title: "Font size",
+    type: ControlType.Number,
+    min: 8,
+    max: 60,
+    defaultValue: 12
+  },
+  color: {
+    title: "Text",
+    type: ControlType.Color,
+    defaultValue: "black"
   },
   canvasOverride: {
     title: "Canvas Override",

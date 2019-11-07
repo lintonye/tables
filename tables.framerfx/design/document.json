@@ -145,9 +145,9 @@
           {
             "__class" : "CodeComponentNode",
             "aspectRatio" : null,
-            "bottom" : 86,
-            "centerAnchorX" : 0.50568181818181823,
-            "centerAnchorY" : 0.43700787401574803,
+            "bottom" : 88,
+            "centerAnchorX" : 0.50071022727272729,
+            "centerAnchorY" : 0.43307086614173229,
             "children" : [
 
             ],
@@ -155,7 +155,9 @@
             "codeComponentIdentifier" : ".\/Table.tsx_Table",
             "codeComponentProps" : {
               "canvasOverride" : "App",
-              "dataUrl" : "design\/assets\/MOCK_DATA (2).json",
+              "color" : "hsl(0, 18%, 28%)",
+              "fill" : "transparent",
+              "fontSize" : 12,
               "overrideFunctionName" : "Table"
             },
             "codeOverrideEnabled" : false,
@@ -174,10 +176,10 @@
             "fillType" : "color",
             "height" : 400,
             "heightType" : 0,
-            "id" : "Me97pwLfC",
+            "id" : "nDTJXFKUV",
             "intrinsicHeight" : 400,
             "intrinsicWidth" : 600,
-            "left" : 30,
+            "left" : 22,
             "locked" : false,
             "name" : null,
             "opacity" : 1,
@@ -191,11 +193,11 @@
             "radiusPerCorner" : false,
             "radiusTopLeft" : 0,
             "radiusTopRight" : 0,
-            "right" : 22,
+            "right" : 21,
             "rotation" : 0,
-            "top" : 22,
+            "top" : 20,
             "visible" : true,
-            "width" : 652,
+            "width" : 661,
             "widthType" : 0
           }
         ],
@@ -252,6 +254,96 @@
         "top" : 255,
         "visible" : true,
         "width" : 704,
+        "widthType" : 0
+      },
+      {
+        "__class" : "TextNode",
+        "autoSize" : false,
+        "bottom" : null,
+        "centerAnchorX" : 0,
+        "centerAnchorY" : 0,
+        "codeOverrideEnabled" : false,
+        "constraintsLocked" : false,
+        "exportOptions" : [
+
+        ],
+        "height" : 64,
+        "heightType" : 0,
+        "id" : "EFeAQN1Jg",
+        "isTarget" : false,
+        "left" : 714,
+        "locked" : false,
+        "name" : null,
+        "opacity" : 1,
+        "originalid" : null,
+        "parentid" : "U8ngYz_sq",
+        "right" : null,
+        "rotation" : 0,
+        "styledText" : {
+          "__class" : "StyledTextDraft",
+          "blocks" : [
+            {
+              "data" : {
+                "emptyStyle" : [
+                  "FONT:__SF-UI-Text-Regular__",
+                  "COLOR:rgb(0, 0, 0)",
+                  "SIZE:16",
+                  "LETTERSPACING:0",
+                  "LINEHEIGHT:1.2"
+                ]
+              },
+              "depth" : 0,
+              "entityRanges" : [
+
+              ],
+              "inlineStyleRanges" : [
+                {
+                  "length" : 3,
+                  "offset" : 0,
+                  "style" : "FONT:__SF-UI-Text-Regular__"
+                },
+                {
+                  "length" : 3,
+                  "offset" : 0,
+                  "style" : "COLOR:rgb(0, 0, 0)"
+                },
+                {
+                  "length" : 3,
+                  "offset" : 0,
+                  "style" : "SIZE:16"
+                },
+                {
+                  "length" : 3,
+                  "offset" : 0,
+                  "style" : "LETTERSPACING:0"
+                },
+                {
+                  "length" : 3,
+                  "offset" : 0,
+                  "style" : "LINEHEIGHT:1.2"
+                }
+              ],
+              "key" : "avmvj",
+              "text" : "abc",
+              "type" : "unstyled"
+            }
+          ],
+          "cached" : {
+            "html" : "<div data-offset-key=\"avmvj-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"avmvj-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSText&quot;, &quot;SFProText-Regular&quot;, &quot;SFUIText-Regular&quot;, &quot;.SFUIText&quot;, &quot;-apple-system&quot;, &quot;BlinkMacSystemFont&quot;, sans-serif;-webkit-text-fill-color:rgb(0, 0, 0);font-size:16px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\">abc<\/span><\/span><\/div>",
+            "os" : "macos 10_14 framerx",
+            "size" : {
+              "height" : 19,
+              "width" : 129
+            },
+            "width" : 128
+          },
+          "entityMap" : {
+
+          }
+        },
+        "top" : 64,
+        "visible" : true,
+        "width" : 128,
         "widthType" : 0
       }
     ],
