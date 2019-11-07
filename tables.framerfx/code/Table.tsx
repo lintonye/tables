@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Frame, addPropertyControls, ControlType } from "framer"
+import { Frame, addPropertyControls, ControlType, RenderTarget } from "framer"
 import { useTable } from "react-table"
 import { PhotoCell } from "./canvas"
 import styled from "styled-components"
@@ -33,9 +33,27 @@ const Styles = styled.div`
     }
   }
 `
-
-// Open Preview: Command + P
-// Learn more: https://framer.com/api
+function GridThumbnail({ size = 24 }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      className="feather feather-grid"
+      viewBox="0 0 24 24"
+    >
+      <path d="M3 3H10V10H3z"></path>
+      <path d="M14 3H21V10H14z"></path>
+      <path d="M14 14H21V21H14z"></path>
+      <path d="M3 14H10V21H3z"></path>
+    </svg>
+  )
+}
 
 function TableUI({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
@@ -70,7 +88,11 @@ function TableUI({ columns, data }) {
               {row.cells.map(cell => {
                 console.log(cell)
 
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                return (
+                  <td {...cell.getCellProps()} align={cell.column.align}>
+                    {cell.render("Cell")}
+                  </td>
+                )
               })}
             </tr>
           )
@@ -89,7 +111,8 @@ function createColumns(data, columnsOverride) {
         ...columns,
         {
           Header: key,
-          accessor: key
+          accessor: key,
+          align: Number.isFinite(row[key]) ? "right" : "left"
         }
       ]
     }, [])
@@ -112,7 +135,9 @@ export function Table(props) {
   const mergedColumns = React.useMemo(() => createColumns(data, columns), [
     data
   ])
-  return data === "loading" ? (
+  return RenderTarget.current() === RenderTarget.thumbnail ? (
+    <GridThumbnail size={400} />
+  ) : data === "loading" ? (
     <div>Loading...</div>
   ) : (
     <Styles>
@@ -122,8 +147,8 @@ export function Table(props) {
 }
 
 Table.defaultProps = {
-  height: 800,
-  width: 600
+  width: 600,
+  height: 400
 }
 
 // Learn more: https://framer.com/api/property-controls/
