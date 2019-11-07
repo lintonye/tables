@@ -130,7 +130,7 @@
         "rotation" : 0,
         "top" : 150,
         "visible" : true,
-        "width" : 209,
+        "width" : 146,
         "widthType" : 0
       },
       {
@@ -145,21 +145,20 @@
           {
             "__class" : "CodeComponentNode",
             "aspectRatio" : null,
-            "bottom" : 29,
-            "centerAnchorX" : 0.50710227272727271,
-            "centerAnchorY" : 0.54921259842519687,
+            "bottom" : 54,
+            "centerAnchorX" : 0.49928977272727271,
+            "centerAnchorY" : 0.5,
             "children" : [
 
             ],
             "clip" : true,
             "codeComponentIdentifier" : ".\/Table.tsx_Table",
             "codeComponentProps" : {
-
+              "canvasOverride" : "App",
+              "dataUrl" : "design\/assets\/MOCK_DATA (2).json",
+              "overrideFunctionName" : "Table"
             },
-            "codeOverrideEnabled" : true,
-            "codeOverrideFile" : ".\/App.tsx",
-            "codeOverrideIdentifier" : ".\/App.tsx_Table",
-            "codeOverrideName" : "Table",
+            "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
             "deviceType" : null,
             "exportOptions" : [
@@ -175,10 +174,10 @@
             "fillType" : "color",
             "height" : 400,
             "heightType" : 0,
-            "id" : "hXWaneISX",
+            "id" : "YDbuzxl_e",
             "intrinsicHeight" : 400,
             "intrinsicWidth" : 600,
-            "left" : 57,
+            "left" : 31,
             "locked" : false,
             "name" : null,
             "opacity" : 1,
@@ -192,11 +191,11 @@
             "radiusPerCorner" : false,
             "radiusTopLeft" : 0,
             "radiusTopRight" : 0,
-            "right" : 47,
+            "right" : 32,
             "rotation" : 0,
-            "top" : 79,
+            "top" : 54,
             "visible" : true,
-            "width" : 600,
+            "width" : 641,
             "widthType" : 0
           }
         ],

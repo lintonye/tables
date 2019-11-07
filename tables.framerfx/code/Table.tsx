@@ -104,23 +104,22 @@ function TableUI({ columns, data }) {
 
 function createColumns(data, columnsOverride = []) {
   if (Array.isArray(data) && data.length > 0) {
-    function findColumnOverride(accessor) {
-      if (Array.isArray(columnsOverride)) {
-        return columnsOverride.find(c => c.accessor === accessor)
-      } else return null
-    }
     // infer columns from the first row
     const row = data[0]
-    return Object.keys(row).reduce((columns, key) => {
-      return [
-        ...columns,
-        findColumnOverride(key) || {
-          Header: key,
-          accessor: key,
-          align: Number.isFinite(row[key]) ? "right" : "left"
-        }
-      ]
-    }, [])
+    const defaultColumn = accessor => ({
+      Header: accessor,
+      accessor,
+      align: Number.isFinite(row[accessor]) ? "right" : "left"
+    })
+    return [
+      ...columnsOverride.map(c => ({
+        ...defaultColumn(c.accessor),
+        ...c
+      })),
+      ...Object.keys(row)
+        .filter(key => columnsOverride.findIndex(c => c.accessor === key) < 0)
+        .map(key => defaultColumn(key))
+    ]
   }
   return []
 }
