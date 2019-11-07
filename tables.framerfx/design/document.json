@@ -17,7 +17,7 @@
             "blendingEnabled" : 0,
             "blendingMode" : "normal",
             "bottom" : 7,
-            "centerAnchorX" : 0.34449760765550241,
+            "centerAnchorX" : 0.25617283950617287,
             "centerAnchorY" : 0.49375000000000002,
             "children" : [
 
@@ -62,19 +62,19 @@
             "originalid" : null,
             "parentid" : "szryaTAgw",
             "previewSettings" : null,
-            "radius" : 9,
-            "radiusBottomLeft" : 9,
-            "radiusBottomRight" : 9,
+            "radius" : 34,
+            "radiusBottomLeft" : 34,
+            "radiusBottomRight" : 34,
             "radiusIsRelative" : false,
             "radiusPerCorner" : false,
-            "radiusTopLeft" : 9,
-            "radiusTopRight" : 9,
+            "radiusTopLeft" : 34,
+            "radiusTopRight" : 34,
             "replicaInfo" : null,
             "right" : null,
             "rotation" : 0,
             "top" : 6,
             "visible" : true,
-            "width" : 128,
+            "width" : 67,
             "widthType" : 0
           }
         ],
@@ -85,8 +85,8 @@
         "exportOptions" : [
 
         ],
-        "fillColor" : "white",
-        "fillEnabled" : true,
+        "fillColor" : "hsl(0, 27%, 58%)",
+        "fillEnabled" : false,
         "fillImage" : null,
         "fillImageOriginalName" : null,
         "fillImagePixelHeight" : null,
@@ -130,7 +130,7 @@
         "rotation" : 0,
         "top" : 150,
         "visible" : true,
-        "width" : 146,
+        "width" : 162,
         "widthType" : 0
       },
       {
@@ -145,9 +145,9 @@
           {
             "__class" : "CodeComponentNode",
             "aspectRatio" : null,
-            "bottom" : 54,
-            "centerAnchorX" : 0.49928977272727271,
-            "centerAnchorY" : 0.5,
+            "bottom" : 86,
+            "centerAnchorX" : 0.50568181818181823,
+            "centerAnchorY" : 0.43700787401574803,
             "children" : [
 
             ],
@@ -174,10 +174,10 @@
             "fillType" : "color",
             "height" : 400,
             "heightType" : 0,
-            "id" : "YDbuzxl_e",
+            "id" : "Me97pwLfC",
             "intrinsicHeight" : 400,
             "intrinsicWidth" : 600,
-            "left" : 31,
+            "left" : 30,
             "locked" : false,
             "name" : null,
             "opacity" : 1,
@@ -191,11 +191,11 @@
             "radiusPerCorner" : false,
             "radiusTopLeft" : 0,
             "radiusTopRight" : 0,
-            "right" : 32,
+            "right" : 22,
             "rotation" : 0,
-            "top" : 54,
+            "top" : 22,
             "visible" : true,
-            "width" : 641,
+            "width" : 652,
             "widthType" : 0
           }
         ],

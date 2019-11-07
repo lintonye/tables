@@ -75,7 +75,9 @@ function TableUI({ columns, data }) {
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+              <th {...column.getHeaderProps()} align={column.align}>
+                {column.render("Header")}
+              </th>
             ))}
           </tr>
         ))}
@@ -111,22 +113,26 @@ function createColumns(data, columnsOverride = []) {
       accessor,
       align: Number.isFinite(row[accessor]) ? "right" : "left"
     })
-    return [
-      ...columnsOverride.map(c => ({
-        ...defaultColumn(c.accessor),
-        ...c
-      })),
-      ...Object.keys(row)
-        .filter(key => columnsOverride.findIndex(c => c.accessor === key) < 0)
-        .map(key => defaultColumn(key))
-    ]
+    return Array.isArray(columnsOverride)
+      ? [
+          ...columnsOverride.map(c => ({
+            ...defaultColumn(c.accessor),
+            ...c
+          })),
+          ...Object.keys(row)
+            .filter(
+              key => columnsOverride.findIndex(c => c.accessor === key) < 0
+            )
+            .map(defaultColumn)
+        ]
+      : Object.keys(row).map(defaultColumn)
   }
   return []
 }
 
 function useCanvasOverride(props) {
   const { canvasOverride, overrideFunctionName, ...rest } = props
-  const [overrideProps, setOverrideProps] = React.useState(null)
+  const [overrideProps, setOverrideProps] = React.useState()
   React.useEffect(() => {
     async function loadModule() {
       try {

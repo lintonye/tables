@@ -18,6 +18,6 @@ export function Table(props): Override {
 
 export function Table2(props): Override {
   return {
-    columns: [{ accessor: "id" }]
+    columns: [{ accessor: "id", show: false }]
   }
 }
