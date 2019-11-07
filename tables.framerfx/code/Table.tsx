@@ -125,8 +125,28 @@ function createColumns(data, columnsOverride = []) {
   return []
 }
 
+function useCanvasOverride(props) {
+  const { canvasOverride, overrideFunctionName, ...rest } = props
+  const [overrideProps, setOverrideProps] = React.useState(null)
+  React.useEffect(() => {
+    async function loadModule() {
+      try {
+        const m = await import(`./${canvasOverride}`)
+        const overrideFun = m[overrideFunctionName]
+        if (typeof overrideFun === "function") {
+          setOverrideProps(overrideFun())
+        }
+      } catch (e) {
+        console.log("Failed to load canvas override", e)
+      }
+    }
+    loadModule()
+  }, [canvasOverride, overrideFunctionName])
+  return overrideProps ? { ...rest, ...overrideProps } : rest
+}
+
 export function Table(props) {
-  const { dataUrl, columns, ...rest } = props
+  const { dataUrl, columns, ...rest } = useCanvasOverride(props)
   const [data, setData] = React.useState<String | Array<Object>>(defaultData)
   React.useEffect(() => {
     async function loadData() {
@@ -164,12 +184,14 @@ addPropertyControls(Table, {
     type: ControlType.File,
     allowedFileTypes: ["json"]
   },
-  columns: {
-    title: "Columns",
-    type: ControlType.Array,
-    propertyControl: {
-      type: ControlType.String,
-      title: "title"
-    }
+  canvasOverride: {
+    title: "Canvas Override",
+    type: ControlType.String,
+    defaultValue: "App"
+  },
+  overrideFunctionName: {
+    title: "Override function",
+    type: ControlType.String,
+    defaultValue: "Table"
   }
 })
