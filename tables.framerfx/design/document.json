@@ -11,7 +11,149 @@
         "centerAnchorX" : 0,
         "centerAnchorY" : 0,
         "children" : [
+          {
+            "__class" : "CodeComponentNode",
+            "aspectRatio" : null,
+            "bottom" : null,
+            "centerAnchorX" : 0.22820401046207497,
+            "centerAnchorY" : 0.19935170178282011,
+            "children" : [
 
+            ],
+            "clip" : true,
+            "codeComponentIdentifier" : ".\/Table.tsx_TableClean",
+            "codeComponentProps" : {
+              "borderColor" : "#d2cfd8",
+              "borderWidth" : 0,
+              "canvasOverride" : "App",
+              "cellBorderRadius" : 0,
+              "color" : "black",
+              "dataUrl" : "design\/assets\/people.json",
+              "dividerColor" : "#d2cfd8",
+              "dividerType" : "horizontal",
+              "dividerWidth" : 1,
+              "fill" : "rgba(96, 52, 52, 0)",
+              "fontSize" : 19,
+              "gap" : 0,
+              "headerBgColor" : "transparent",
+              "headerColor" : "black",
+              "headerDividerColor" : "#888398",
+              "headerDividerWidth" : 2,
+              "headerFontSize" : 18,
+              "overrideFunctionName" : "TableMultiField",
+              "padding" : 14
+            },
+            "codeOverrideEnabled" : false,
+            "constraintsLocked" : false,
+            "deviceType" : null,
+            "exportOptions" : [
+
+            ],
+            "fillColor" : "rgba(255,255,255,1)",
+            "fillEnabled" : false,
+            "fillImage" : null,
+            "fillImageOriginalName" : null,
+            "fillImagePixelHeight" : null,
+            "fillImagePixelWidth" : null,
+            "fillImageResize" : "fill",
+            "fillType" : "color",
+            "height" : 400,
+            "heightType" : 0,
+            "id" : "AToyP1EhD",
+            "intrinsicHeight" : 400,
+            "intrinsicWidth" : 600,
+            "left" : 200,
+            "locked" : false,
+            "name" : null,
+            "opacity" : 1,
+            "originalid" : null,
+            "parentid" : "WGqvZZ_gh",
+            "previewSettings" : null,
+            "radius" : 0,
+            "radiusBottomLeft" : 0,
+            "radiusBottomRight" : 0,
+            "radiusIsRelative" : false,
+            "radiusPerCorner" : false,
+            "radiusTopLeft" : 0,
+            "radiusTopRight" : 0,
+            "right" : null,
+            "rotation" : 0,
+            "top" : 46,
+            "visible" : true,
+            "width" : 647,
+            "widthType" : 0
+          },
+          {
+            "__class" : "CodeComponentNode",
+            "aspectRatio" : null,
+            "bottom" : null,
+            "centerAnchorX" : 0.52441150828247607,
+            "centerAnchorY" : 0.30956239870340357,
+            "children" : [
+
+            ],
+            "clip" : true,
+            "codeComponentIdentifier" : ".\/Table.tsx_TableClassic",
+            "codeComponentProps" : {
+              "borderColor" : "#d2cfd8",
+              "borderWidth" : 1,
+              "canvasOverride" : "App",
+              "cellBorderRadius" : 0,
+              "color" : "black",
+              "dividerColor" : "#d2cfd8",
+              "dividerType" : "both",
+              "dividerWidth" : 1,
+              "fill" : "transparent",
+              "fontSize" : 12,
+              "gap" : 0,
+              "headerBgColor" : "#f7f7fa",
+              "headerColor" : "black",
+              "headerDividerColor" : "#d2cfd8",
+              "headerDividerWidth" : 1,
+              "headerFontSize" : 12,
+              "overrideFunctionName" : "",
+              "padding" : 8
+            },
+            "codeOverrideEnabled" : false,
+            "constraintsLocked" : false,
+            "deviceType" : null,
+            "exportOptions" : [
+
+            ],
+            "fillColor" : "rgba(255,255,255,1)",
+            "fillEnabled" : false,
+            "fillImage" : null,
+            "fillImageOriginalName" : null,
+            "fillImagePixelHeight" : null,
+            "fillImagePixelWidth" : null,
+            "fillImageResize" : "fill",
+            "fillType" : "color",
+            "height" : 400,
+            "heightType" : 0,
+            "id" : "mcsWsW6ll",
+            "intrinsicHeight" : 400,
+            "intrinsicWidth" : 600,
+            "left" : null,
+            "locked" : false,
+            "name" : null,
+            "opacity" : 1,
+            "originalid" : null,
+            "parentid" : "WGqvZZ_gh",
+            "previewSettings" : null,
+            "radius" : 0,
+            "radiusBottomLeft" : 0,
+            "radiusBottomRight" : 0,
+            "radiusIsRelative" : false,
+            "radiusPerCorner" : false,
+            "radiusTopLeft" : 0,
+            "radiusTopRight" : 0,
+            "right" : 791,
+            "rotation" : 0,
+            "top" : 182,
+            "visible" : true,
+            "width" : 600,
+            "widthType" : 0
+          }
         ],
         "clip" : true,
         "codeOverrideEnabled" : false,
@@ -82,9 +224,9 @@
             "aspectRatio" : null,
             "blendingEnabled" : 0,
             "blendingMode" : "normal",
-            "bottom" : null,
-            "centerAnchorX" : 0.20833333333333334,
-            "centerAnchorY" : 0.46341463414634149,
+            "bottom" : 2,
+            "centerAnchorX" : 0.15476190476190477,
+            "centerAnchorY" : 0.5,
             "children" : [
 
             ],
@@ -117,7 +259,7 @@
             "isExternalMaster" : null,
             "isMaster" : false,
             "isTarget" : false,
-            "left" : 15,
+            "left" : 1,
             "locked" : false,
             "name" : "avatar",
             "navigationTarget" : null,
@@ -128,19 +270,109 @@
             "originalid" : null,
             "parentid" : "IZb5cPV4r",
             "previewSettings" : null,
-            "radius" : 0,
-            "radiusBottomLeft" : 0,
-            "radiusBottomRight" : 0,
+            "radius" : 25,
+            "radiusBottomLeft" : 25,
+            "radiusBottomRight" : 25,
             "radiusIsRelative" : false,
             "radiusPerCorner" : false,
-            "radiusTopLeft" : 0,
-            "radiusTopRight" : 0,
+            "radiusTopLeft" : 25,
+            "radiusTopRight" : 25,
             "replicaInfo" : null,
             "right" : null,
             "rotation" : 0,
-            "top" : 13,
+            "top" : 2,
             "visible" : true,
             "width" : 50,
+            "widthType" : 0
+          },
+          {
+            "__class" : "TextNode",
+            "autoSize" : true,
+            "bottom" : null,
+            "centerAnchorX" : 0.62202380952380953,
+            "centerAnchorY" : 0.49074074074074076,
+            "codeOverrideEnabled" : false,
+            "constraintsLocked" : false,
+            "exportOptions" : [
+
+            ],
+            "height" : 19,
+            "heightType" : 0,
+            "id" : "YAOuI7uXR",
+            "isTarget" : true,
+            "left" : null,
+            "locked" : false,
+            "name" : "firstName",
+            "opacity" : 1,
+            "originalid" : null,
+            "parentid" : "IZb5cPV4r",
+            "right" : 26,
+            "rotation" : 0,
+            "styledText" : {
+              "__class" : "StyledTextDraft",
+              "blocks" : [
+                {
+                  "data" : {
+                    "emptyStyle" : [
+                      "FONT:__SF-UI-Text-Regular__",
+                      "COLOR:rgb(0, 0, 0)",
+                      "SIZE:16",
+                      "LETTERSPACING:0",
+                      "LINEHEIGHT:1.2"
+                    ]
+                  },
+                  "depth" : 0,
+                  "entityRanges" : [
+
+                  ],
+                  "inlineStyleRanges" : [
+                    {
+                      "length" : 9,
+                      "offset" : 0,
+                      "style" : "FONT:__SF-UI-Text-Regular__"
+                    },
+                    {
+                      "length" : 9,
+                      "offset" : 0,
+                      "style" : "COLOR:rgb(0, 0, 0)"
+                    },
+                    {
+                      "length" : 9,
+                      "offset" : 0,
+                      "style" : "SIZE:16"
+                    },
+                    {
+                      "length" : 9,
+                      "offset" : 0,
+                      "style" : "LETTERSPACING:0"
+                    },
+                    {
+                      "length" : 9,
+                      "offset" : 0,
+                      "style" : "LINEHEIGHT:1.2"
+                    }
+                  ],
+                  "key" : "ettnh",
+                  "text" : "firstName",
+                  "type" : "unstyled"
+                }
+              ],
+              "cached" : {
+                "html" : "<div data-offset-key=\"ettnh-0-0\" class=\"public-DraftStyleDefault-block public-DraftStyleDefault-ltr\"><span data-offset-key=\"ettnh-0-0\" style=\"tab-size:4;font-family:&quot;.SFNSText&quot;, &quot;SFProText-Regular&quot;, &quot;SFUIText-Regular&quot;, &quot;.SFUIText&quot;, &quot;-apple-system&quot;, &quot;BlinkMacSystemFont&quot;, sans-serif;-webkit-text-fill-color:rgb(0, 0, 0);font-size:16px;letter-spacing:0px;line-height:1.2\"><span data-text=\"true\">firstName<\/span><\/span><\/div>",
+                "os" : "macos 10_14 framerx",
+                "size" : {
+                  "height" : 19,
+                  "width" : 75
+                },
+                "width" : 0
+              },
+              "entityMap" : {
+
+              }
+            },
+            "top" : null,
+            "visible" : true,
+            "width" : 75,
             "widthType" : 0
           }
         ],
@@ -165,7 +397,7 @@
         "guidesY" : [
 
         ],
-        "height" : 82,
+        "height" : 54,
         "heightType" : 0,
         "id" : "IZb5cPV4r",
         "intrinsicHeight" : null,
@@ -196,7 +428,7 @@
         "rotation" : 0,
         "top" : -207,
         "visible" : true,
-        "width" : 85,
+        "width" : 168,
         "widthType" : 0
       }
     ],

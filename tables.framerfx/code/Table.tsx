@@ -163,70 +163,98 @@ function createColumns(data, columnsOverride = []) {
 
 function useCanvasOverride(props) {
   const { canvasOverride, overrideFunctionName, ...rest } = props
-  const [overrideProps, setOverrideProps] = React.useState()
+  const [overrideProps, setOverrideProps] = React.useState(null)
   React.useEffect(() => {
     async function loadModule() {
       try {
+        setOverrideProps("loading")
         const m = await import(`./${canvasOverride}`)
         const overrideFun = m[overrideFunctionName]
-        if (typeof overrideFun === "function") {
-          setOverrideProps(overrideFun())
-        }
+        setOverrideProps(
+          typeof overrideFun === "function" ? overrideFun() : null
+        )
       } catch (e) {
-        console.log("Failed to load canvas override", e)
+        console.log(
+          `Failed to load canvas override, file=${canvasOverride} funName=${overrideFunctionName}`,
+          e
+        )
+        setOverrideProps(null)
       }
     }
     loadModule()
   }, [canvasOverride, overrideFunctionName])
-  return overrideProps ? { ...rest, ...overrideProps } : rest
+  return [
+    overrideProps === "loading",
+    overrideProps !== null && overrideProps !== "loading"
+      ? { ...rest, ...overrideProps }
+      : rest
+  ]
 }
 
-function convertData(data, rowConverter) {
-  return typeof rowConverter === "function" && Array.isArray(data)
-    ? data.map(rowConverter)
-    : data
-}
-
-function Table(props) {
-  const { dataUrl, columns, preset, rowConverter, ...rest } = useCanvasOverride(
-    props
-  )
-  const [data, setData] = React.useState<String | Array<Object>>(
-    convertData(defaultData, rowConverter)
-  )
+function useLoadConvertedData(dataUrl, rowConverter) {
+  const [data, setData] = React.useState(null)
   React.useEffect(() => {
     async function loadData() {
-      setData("loading")
-      const response = await fetch(dataUrl)
-      let finalData
-      if (dataUrl.endsWith(".json")) {
-        const d = await response.json()
-        finalData = d
-      } else {
-        //parse as csv
-        const results = Papa.parse(await response.text(), {
-          header: true,
-          dynamicTyping: true
-        })
-        finalData = results.data
+      let finalData = defaultData
+      if (dataUrl) {
+        const response = await fetch(dataUrl)
+        if (dataUrl.endsWith(".json")) {
+          const d = await response.json()
+          finalData = d
+        } else {
+          //parse as csv
+          const results = Papa.parse(await response.text(), {
+            header: true,
+            dynamicTyping: true
+          })
+          finalData = results.data
+        }
       }
-      setData(convertData(finalData, rowConverter))
+      setData(
+        typeof rowConverter === "function" && Array.isArray(finalData)
+          ? finalData.map(rowConverter)
+          : finalData
+      )
     }
-    dataUrl && loadData()
+    loadData()
   }, [dataUrl, rowConverter])
+  return data
+}
+
+function TableWithData(props) {
+  const { dataUrl, columns, preset, rowConverter, ...rest } = props
+  const data = useLoadConvertedData(dataUrl, rowConverter)
+  console.log(data)
 
   const mergedColumns = React.useMemo(() => createColumns(data, columns), [
     data,
     columns
   ])
-  return RenderTarget.current() === RenderTarget.thumbnail ? (
-    <GridThumbnail size={400} />
-  ) : data === "loading" ? (
-    <div>Loading...</div>
+  return data === null ? (
+    <div>Loading data...</div>
   ) : (
     <Styles {...rest}>
       <TableUI columns={mergedColumns} data={data} />
     </Styles>
+  )
+}
+
+function TableOnCanvas(props) {
+  const [loadingModules, mergedProps] = useCanvasOverride(props)
+  console.log(loadingModules)
+
+  return loadingModules ? (
+    <div>Loading...</div>
+  ) : (
+    <TableWithData {...mergedProps} />
+  )
+}
+
+function Table(props) {
+  return RenderTarget.current() === RenderTarget.thumbnail ? (
+    <GridThumbnail size={400} />
+  ) : (
+    <TableOnCanvas {...props} />
   )
 }
 
