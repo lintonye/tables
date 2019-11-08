@@ -205,7 +205,8 @@ function useLoadConvertedData(dataUrl, rowConverter) {
           //parse as csv
           const results = Papa.parse(await response.text(), {
             header: true,
-            dynamicTyping: true
+            dynamicTyping: true,
+            skipEmptyLines: true
           })
           finalData = results.data
         }
