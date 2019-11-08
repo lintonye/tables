@@ -182,7 +182,7 @@ function useCanvasOverride(props) {
   return overrideProps ? { ...rest, ...overrideProps } : rest
 }
 
-export function Table(props) {
+function Table(props) {
   const { dataUrl, columns, preset, ...rest } = useCanvasOverride(props)
   const [data, setData] = React.useState<String | Array<Object>>(defaultData)
   React.useEffect(() => {
@@ -207,25 +207,36 @@ export function Table(props) {
     data,
     columns
   ])
-  const styles = { ...Presets[preset], ...rest }
   return RenderTarget.current() === RenderTarget.thumbnail ? (
-    <GridThumbnail size={400} />
+    <GridThumbnail size={150} />
   ) : data === "loading" ? (
     <div>Loading...</div>
   ) : (
-    <Styles {...styles}>
+    <Styles {...rest}>
       <TableUI columns={mergedColumns} data={data} />
     </Styles>
   )
 }
 
-Table.defaultProps = {
-  width: 600,
-  height: 400
+export function TableClassic(props) {
+  return <Table {...props} />
+}
+
+export function TableContrastHeading(props) {
+  return <Table {...props} />
+}
+
+export function TableClean(props) {
+  return <Table {...props} />
+}
+
+export function TableMinimal(props) {
+  return <Table {...props} />
 }
 
 export const Presets = {
   classic: {
+    component: TableClassic,
     fill: "transparent",
     fontSize: 12,
     color: "black",
@@ -244,6 +255,7 @@ export const Presets = {
     cellBorderRadius: 0
   },
   "contrast-heading": {
+    component: TableContrastHeading,
     fill: "transparent",
     fontSize: 14,
     color: "black",
@@ -262,6 +274,7 @@ export const Presets = {
     cellBorderRadius: 6
   },
   clean: {
+    component: TableClean,
     fill: "transparent",
     fontSize: 14,
     color: "black",
@@ -280,6 +293,7 @@ export const Presets = {
     cellBorderRadius: 0
   },
   minimal: {
+    component: TableMinimal,
     fill: "transparent",
     fontSize: 14,
     color: "black",
@@ -299,125 +313,144 @@ export const Presets = {
   }
 }
 
-// Learn more: https://framer.com/api/property-controls/
-addPropertyControls(Table, {
-  dataUrl: {
-    title: "Data",
-    type: ControlType.File,
-    allowedFileTypes: ["json", "csv"]
-  },
-  preset: {
-    title: "Preset",
-    type: ControlType.Enum,
-    options: Object.keys(Presets)
-  },
-  fill: {
-    title: "Fill",
-    type: ControlType.Color,
-    defaultValue: "transparent"
-  },
-  fontSize: {
-    title: "Font size",
-    type: ControlType.Number,
-    min: 8,
-    max: 60,
-    defaultValue: 12
-  },
-  color: {
-    title: "Text",
-    type: ControlType.Color,
-    defaultValue: "black"
-  },
-  headerFontSize: {
-    title: "Header Font",
-    type: ControlType.Number,
-    min: 8,
-    max: 60,
-    defaultValue: 12
-  },
-  headerColor: {
-    title: "Header FG",
-    type: ControlType.Color,
-    defaultValue: "black"
-  },
-  headerBgColor: {
-    title: "Header BG",
-    type: ControlType.Color,
-    defaultValue: "transparent"
-  },
-  headerDividerWidth: {
-    title: "Header Divider",
-    type: ControlType.Number,
-    min: 0,
-    max: 4,
-    defaultValue: 1
-  },
-  headerDividerColor: {
-    title: "Header Divider",
-    type: ControlType.Color,
-    defaultValue: "#DDD"
-  },
-  borderWidth: {
-    title: "Border",
-    type: ControlType.Number,
-    min: 0,
-    max: 4,
-    defaultValue: 1
-  },
-  borderColor: {
-    title: "Border",
-    type: ControlType.Color,
-    defaultValue: "#DDD"
-  },
-  dividerType: {
-    title: "Divider",
-    type: ControlType.Enum,
-    options: ["both", "horizontal", "vertical"],
-    defaultValue: "both"
-  },
-  dividerWidth: {
-    title: "Divider",
-    type: ControlType.Number,
-    min: 0,
-    max: 4,
-    defaultValue: 1
-  },
-  dividerColor: {
-    title: "Divider",
-    type: ControlType.Color,
-    defaultValue: "#DDD"
-  },
-  padding: {
-    title: "Padding",
-    type: ControlType.Number,
-    min: 0,
-    max: 40,
-    step: 2,
-    defaultValue: 8
-  },
-  gap: {
-    title: "Gap",
-    type: ControlType.Number,
-    min: 0,
-    max: 40,
-    step: 2,
-    defaultValue: 0
-  },
-  cellBorderRadius: {
-    title: "Radius",
-    type: ControlType.Number,
-    min: 0,
-    max: 40,
-    defaultValue: 0
-  },
-  canvasOverride: {
-    title: "Canvas Override",
-    type: ControlType.String,
-    defaultValue: "App"
-  },
-  overrideFunctionName: {
-    title: "Override function",
-    type: ControlType.String,
-    defaultValue: "Table"
+function setDefaultValue(preset, propertyControls) {
+  Object.keys(preset).forEach(p => {
+    const propControl = propertyControls[p]
+    if (propControl) {
+      propControl.defaultValue = preset[p]
+    }
+  })
+  return propertyControls
+}
+
+Object.keys(Presets).forEach(k => {
+  const preset = Presets[k]
+  preset.component.defaultProps = {
+    width: 600,
+    height: 400
   }
+  addPropertyControls(
+    preset.component,
+    setDefaultValue(preset, {
+      dataUrl: {
+        title: "Data",
+        type: ControlType.File,
+        allowedFileTypes: ["json", "csv"]
+      },
+      //   preset: {
+      //     title: "Preset",
+      //     type: ControlType.Enum,
+      //     options: Object.keys(Presets)
+      //   },
+      fill: {
+        title: "Fill",
+        type: ControlType.Color,
+        defaultValue: "transparent"
+      },
+      fontSize: {
+        title: "Font size",
+        type: ControlType.Number,
+        min: 8,
+        max: 60,
+        defaultValue: 12
+      },
+      color: {
+        title: "Text",
+        type: ControlType.Color,
+        defaultValue: "black"
+      },
+      headerFontSize: {
+        title: "Header Font",
+        type: ControlType.Number,
+        min: 8,
+        max: 60,
+        defaultValue: 12
+      },
+      headerColor: {
+        title: "Header FG",
+        type: ControlType.Color,
+        defaultValue: "black"
+      },
+      headerBgColor: {
+        title: "Header BG",
+        type: ControlType.Color,
+        defaultValue: "transparent"
+      },
+      headerDividerWidth: {
+        title: "Header Divider",
+        type: ControlType.Number,
+        min: 0,
+        max: 4,
+        defaultValue: 1
+      },
+      headerDividerColor: {
+        title: "Header Divider",
+        type: ControlType.Color,
+        defaultValue: "#DDD"
+      },
+      borderWidth: {
+        title: "Border",
+        type: ControlType.Number,
+        min: 0,
+        max: 4,
+        defaultValue: 1
+      },
+      borderColor: {
+        title: "Border",
+        type: ControlType.Color,
+        defaultValue: "#DDD"
+      },
+      dividerType: {
+        title: "Divider",
+        type: ControlType.Enum,
+        options: ["both", "horizontal", "vertical"],
+        defaultValue: "both"
+      },
+      dividerWidth: {
+        title: "Divider",
+        type: ControlType.Number,
+        min: 0,
+        max: 4,
+        defaultValue: 1
+      },
+      dividerColor: {
+        title: "Divider",
+        type: ControlType.Color,
+        defaultValue: "#DDD"
+      },
+      padding: {
+        title: "Padding",
+        type: ControlType.Number,
+        min: 0,
+        max: 40,
+        step: 2,
+        defaultValue: 8
+      },
+      gap: {
+        title: "Gap",
+        type: ControlType.Number,
+        min: 0,
+        max: 40,
+        step: 2,
+        defaultValue: 0
+      },
+      cellBorderRadius: {
+        title: "Radius",
+        type: ControlType.Number,
+        min: 0,
+        max: 40,
+        defaultValue: 0
+      },
+      canvasOverride: {
+        title: "Canvas Override",
+        type: ControlType.String,
+        defaultValue: "App"
+      },
+      overrideFunctionName: {
+        title: "Override function",
+        type: ControlType.String
+        // defaultValue: "Table"
+      }
+    })
+  )
 })
