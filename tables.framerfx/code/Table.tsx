@@ -183,7 +183,7 @@ function useCanvasOverride(props) {
 }
 
 export function Table(props) {
-  const { dataUrl, columns, ...rest } = useCanvasOverride(props)
+  const { dataUrl, columns, preset, ...rest } = useCanvasOverride(props)
   const [data, setData] = React.useState<String | Array<Object>>(defaultData)
   React.useEffect(() => {
     async function loadData() {
@@ -207,12 +207,13 @@ export function Table(props) {
     data,
     columns
   ])
+  const styles = { ...Presets[preset], ...rest }
   return RenderTarget.current() === RenderTarget.thumbnail ? (
     <GridThumbnail size={400} />
   ) : data === "loading" ? (
     <div>Loading...</div>
   ) : (
-    <Styles {...rest}>
+    <Styles {...styles}>
       <TableUI columns={mergedColumns} data={data} />
     </Styles>
   )
@@ -223,12 +224,92 @@ Table.defaultProps = {
   height: 400
 }
 
+export const Presets = {
+  classic: {
+    fill: "transparent",
+    fontSize: 12,
+    color: "black",
+    headerFontSize: 12,
+    headerColor: "black",
+    headerBgColor: "#f7f7fa",
+    headerDividerWidth: 1,
+    headerDividerColor: "#d2cfd8",
+    borderWidth: 1,
+    borderColor: "#d2cfd8",
+    dividerType: "both",
+    dividerWidth: 1,
+    dividerColor: "#d2cfd8",
+    padding: 8,
+    gap: 0,
+    cellBorderRadius: 0
+  },
+  "contrast-heading": {
+    fill: "transparent",
+    fontSize: 14,
+    color: "black",
+    headerFontSize: 14,
+    headerColor: "#FFF",
+    headerBgColor: "#5f6366",
+    headerDividerWidth: 1,
+    headerDividerColor: "#d2cfd8",
+    borderWidth: 0,
+    borderColor: "#d2cfd8",
+    dividerType: "both",
+    dividerWidth: 0,
+    dividerColor: "#d2cfd8",
+    padding: 10,
+    gap: 6,
+    cellBorderRadius: 6
+  },
+  clean: {
+    fill: "transparent",
+    fontSize: 14,
+    color: "black",
+    headerFontSize: 12,
+    headerColor: "black",
+    headerBgColor: "transparent",
+    headerDividerWidth: 2,
+    headerDividerColor: "#888398",
+    borderWidth: 0,
+    borderColor: "#d2cfd8",
+    dividerType: "horizontal",
+    dividerWidth: 1,
+    dividerColor: "#d2cfd8",
+    padding: 8,
+    gap: 0,
+    cellBorderRadius: 0
+  },
+  minimal: {
+    fill: "transparent",
+    fontSize: 14,
+    color: "black",
+    headerFontSize: 12,
+    headerColor: "#9a99a2",
+    headerBgColor: "transparent",
+    headerDividerWidth: 0,
+    headerDividerColor: "#888398",
+    borderWidth: 0,
+    borderColor: "#d2cfd8",
+    dividerType: "horizontal",
+    dividerWidth: 0,
+    dividerColor: "#d2cfd8",
+    padding: 8,
+    gap: 0,
+    cellBorderRadius: 0
+  }
+}
+
 // Learn more: https://framer.com/api/property-controls/
 addPropertyControls(Table, {
   dataUrl: {
     title: "Data",
     type: ControlType.File,
     allowedFileTypes: ["json", "csv"]
+  },
+  preset: {
+    title: "Preset",
+    type: ControlType.Enum,
+    options: Object.keys(Presets)
   },
   fill: {
     title: "Fill",

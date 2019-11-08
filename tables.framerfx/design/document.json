@@ -164,14 +164,15 @@
               "dividerWidth" : 1,
               "fill" : "rgba(110, 110, 110, 0)",
               "fontSize" : 19,
-              "gap" : 8,
+              "gap" : 0,
               "headerBgColor" : "transparent",
               "headerColor" : "hsl(0, 42%, 42%)",
               "headerDividerColor" : "hsl(0, 15%, 26%)",
               "headerDividerWidth" : 2,
               "headerFontSize" : 11,
               "overrideFunctionName" : "Table2",
-              "padding" : 2
+              "padding" : 8,
+              "preset" : "classic"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
@@ -243,7 +244,7 @@
         "isExternalMaster" : null,
         "isMaster" : false,
         "isTarget" : false,
-        "left" : 471,
+        "left" : 336,
         "locked" : false,
         "name" : null,
         "navigationTarget" : null,
@@ -264,7 +265,7 @@
         "replicaInfo" : null,
         "right" : null,
         "rotation" : 0,
-        "top" : 255,
+        "top" : 260,
         "visible" : true,
         "width" : 802,
         "widthType" : 0
@@ -282,8 +283,8 @@
             "__class" : "CodeComponentNode",
             "aspectRatio" : null,
             "bottom" : null,
-            "centerAnchorX" : 0.25436408977556108,
-            "centerAnchorY" : 0.28389830508474578,
+            "centerAnchorX" : 0.32528856243441762,
+            "centerAnchorY" : 0.2701271186440678,
             "children" : [
 
             ],
@@ -303,12 +304,13 @@
               "fontSize" : 19,
               "gap" : 0,
               "headerBgColor" : "transparent",
-              "headerColor" : "hsl(0, 42%, 42%)",
+              "headerColor" : "#555",
               "headerDividerColor" : "hsl(0, 15%, 26%)",
               "headerDividerWidth" : 2,
               "headerFontSize" : 11,
               "overrideFunctionName" : "Table2",
-              "padding" : 8
+              "padding" : 8,
+              "preset" : "classic"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
@@ -329,7 +331,7 @@
             "id" : "GnxAlQ9eJ",
             "intrinsicHeight" : 400,
             "intrinsicWidth" : 600,
-            "left" : 50,
+            "left" : 156,
             "locked" : false,
             "name" : null,
             "opacity" : 1,
@@ -345,7 +347,7 @@
             "radiusTopRight" : 0,
             "right" : null,
             "rotation" : 0,
-            "top" : 54,
+            "top" : 41,
             "visible" : true,
             "width" : 308,
             "widthType" : 0
@@ -380,7 +382,8 @@
               "headerDividerWidth" : 1,
               "headerFontSize" : 14,
               "overrideFunctionName" : "Table2",
-              "padding" : 8
+              "padding" : 8,
+              "preset" : "classic"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
@@ -425,9 +428,9 @@
           {
             "__class" : "CodeComponentNode",
             "aspectRatio" : null,
-            "bottom" : 0,
-            "centerAnchorX" : 0.70947630922693272,
-            "centerAnchorY" : 0.7521186440677966,
+            "bottom" : 21,
+            "centerAnchorX" : 0.71695760598503744,
+            "centerAnchorY" : 0.7298728813559322,
             "children" : [
 
             ],
@@ -452,7 +455,8 @@
               "headerDividerWidth" : 0,
               "headerFontSize" : 16,
               "overrideFunctionName" : "Table2",
-              "padding" : 10
+              "padding" : 10,
+              "preset" : "contrast-heading"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
@@ -487,7 +491,7 @@
             "radiusPerCorner" : false,
             "radiusTopLeft" : 0,
             "radiusTopRight" : 0,
-            "right" : 28,
+            "right" : 22,
             "rotation" : 0,
             "top" : null,
             "visible" : true,
@@ -497,9 +501,9 @@
           {
             "__class" : "CodeComponentNode",
             "aspectRatio" : null,
-            "bottom" : 22,
-            "centerAnchorX" : 0.33541147132169574,
-            "centerAnchorY" : 0.76483050847457623,
+            "bottom" : 62,
+            "centerAnchorX" : 0.2707240293809024,
+            "centerAnchorY" : 0.72245762711864403,
             "children" : [
 
             ],
@@ -524,7 +528,8 @@
               "headerDividerWidth" : 1,
               "headerFontSize" : 12,
               "overrideFunctionName" : "Table2",
-              "padding" : 8
+              "padding" : 8,
+              "preset" : "minimal"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
@@ -545,7 +550,7 @@
             "id" : "S4snCM9wI",
             "intrinsicHeight" : 400,
             "intrinsicWidth" : 600,
-            "left" : 50,
+            "left" : 39,
             "locked" : false,
             "name" : null,
             "opacity" : 1,
@@ -596,7 +601,7 @@
         "isExternalMaster" : null,
         "isMaster" : false,
         "isTarget" : false,
-        "left" : 1373,
+        "left" : 1222,
         "locked" : false,
         "name" : null,
         "navigationTarget" : null,
@@ -619,7 +624,7 @@
         "rotation" : 0,
         "top" : 255,
         "visible" : true,
-        "width" : 802,
+        "width" : 953,
         "widthType" : 0
       },
       {
