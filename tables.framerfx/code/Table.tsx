@@ -241,7 +241,6 @@ function TableWithData(props) {
 
 function TableOnCanvas(props) {
   const [loadingModules, mergedProps] = useCanvasOverride(props)
-  console.log(loadingModules)
 
   return loadingModules ? (
     <div>Loading...</div>
