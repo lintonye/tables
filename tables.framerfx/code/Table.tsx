@@ -19,7 +19,10 @@ const Styles = styled.div`
     borderColor,
     dividerType,
     dividerWidth,
-    dividerColor
+    dividerColor,
+    padding,
+    cellBorderRadius,
+    gap
   }) => css`
     width: 100%;
     background: ${fill};
@@ -27,7 +30,7 @@ const Styles = styled.div`
     color: ${color};
     table {
       width: 100%;
-      border-spacing: 0;
+      border-spacing: ${gap}px;
       border: ${borderWidth}px solid ${borderColor};
       tr {
         :last-child {
@@ -44,7 +47,8 @@ const Styles = styled.div`
       th,
       td {
         margin: 0;
-        padding: 0.5rem;
+        padding: ${padding}px;
+        border-radius: ${cellBorderRadius}px;
         border-bottom: ${dividerType === "vertical" ? 0 : dividerWidth}px solid
           ${dividerColor};
         border-right: ${dividerType === "horizontal" ? 0 : dividerWidth}px solid
@@ -291,6 +295,29 @@ addPropertyControls(Table, {
     title: "Divider",
     type: ControlType.Color,
     defaultValue: "#DDD"
+  },
+  padding: {
+    title: "Padding",
+    type: ControlType.Number,
+    min: 0,
+    max: 40,
+    step: 2,
+    defaultValue: 8
+  },
+  gap: {
+    title: "Gap",
+    type: ControlType.Number,
+    min: 0,
+    max: 40,
+    step: 2,
+    defaultValue: 0
+  },
+  cellBorderRadius: {
+    title: "Radius",
+    type: ControlType.Number,
+    min: 0,
+    max: 40,
+    defaultValue: 0
   },
   canvasOverride: {
     title: "Canvas Override",
