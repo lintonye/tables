@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Frame, addPropertyControls, ControlType, RenderTarget } from "framer"
 import { useTable } from "react-table"
-import { PhotoCell } from "./canvas"
 import styled, { css } from "styled-components"
 import * as defaultData from "./defaultData.json"
 import * as Papa from "papaparse"
@@ -120,7 +119,7 @@ function TableUI({ columns, data }) {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map(cell => {
-                console.log(cell)
+                // console.log(cell)
 
                 return (
                   <td {...cell.getCellProps()} align={cell.column.align}>
@@ -182,33 +181,46 @@ function useCanvasOverride(props) {
   return overrideProps ? { ...rest, ...overrideProps } : rest
 }
 
+function convertData(data, rowConverter) {
+  return typeof rowConverter === "function" && Array.isArray(data)
+    ? data.map(rowConverter)
+    : data
+}
+
 function Table(props) {
-  const { dataUrl, columns, preset, ...rest } = useCanvasOverride(props)
-  const [data, setData] = React.useState<String | Array<Object>>(defaultData)
+  const { dataUrl, columns, preset, rowConverter, ...rest } = useCanvasOverride(
+    props
+  )
+  const [data, setData] = React.useState<String | Array<Object>>(
+    convertData(defaultData, rowConverter)
+  )
   React.useEffect(() => {
     async function loadData() {
       setData("loading")
       const response = await fetch(dataUrl)
+      let finalData
       if (dataUrl.endsWith(".json")) {
         const d = await response.json()
-        setData(d)
+        finalData = d
       } else {
         //parse as csv
         const results = Papa.parse(await response.text(), {
           header: true,
           dynamicTyping: true
         })
-        setData(results.data)
+        finalData = results.data
       }
+      setData(convertData(finalData, rowConverter))
     }
     dataUrl && loadData()
-  }, [dataUrl])
+  }, [dataUrl, rowConverter])
+
   const mergedColumns = React.useMemo(() => createColumns(data, columns), [
     data,
     columns
   ])
   return RenderTarget.current() === RenderTarget.thumbnail ? (
-    <GridThumbnail size={150} />
+    <GridThumbnail size={400} />
   ) : data === "loading" ? (
     <div>Loading...</div>
   ) : (

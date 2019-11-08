@@ -1,23 +1,46 @@
 import * as React from "react"
 import { Override, Data } from "framer"
-import { PhotoCell } from "./canvas"
+import { AvatarCell } from "./canvas"
 
-export function Table(props): Override {
+export function TableMultiField(props): Override {
   return {
     columns: [
-      { accessor: "id" },
+      { accessor: "id", show: false },
       {
-        accessor: "photo",
-        Cell: ({ cell: { value } }) => (
-          <PhotoCell photo={value} position="relative" />
+        accessor: "names",
+        Cell: ({
+          row: {
+            original: {
+              names: { firstName, avatar }
+            }
+          }
+        }) => (
+          <AvatarCell
+            firstName={firstName}
+            avatar={avatar}
+            position="relative"
+          />
         )
       }
-    ]
+    ],
+    rowConverter: ({ firstName, lastName, avatar, email, age }) => ({
+      names: { firstName, lastName, avatar },
+      email,
+      age
+    })
   }
 }
 
-export function Table2(props): Override {
+export function TableAvatar(props): Override {
   return {
-    columns: [{ accessor: "id", show: false }]
+    columns: [
+      { accessor: "id", show: false },
+      {
+        accessor: "avatar",
+        Cell: ({ cell: { value } }) => (
+          <AvatarCell avatar={value} position="relative" />
+        )
+      }
+    ]
   }
 }
