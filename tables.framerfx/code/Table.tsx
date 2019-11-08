@@ -4,6 +4,7 @@ import { useTable } from "react-table"
 import { PhotoCell } from "./canvas"
 import styled, { css } from "styled-components"
 import * as defaultData from "./defaultData.json"
+import * as Papa from "papaparse"
 
 const Styles = styled.div`
   ${({
@@ -188,8 +189,17 @@ export function Table(props) {
     async function loadData() {
       setData("loading")
       const response = await fetch(dataUrl)
-      const d = await response.json()
-      setData(d)
+      if (dataUrl.endsWith(".json")) {
+        const d = await response.json()
+        setData(d)
+      } else {
+        //parse as csv
+        const results = Papa.parse(await response.text(), {
+          header: true,
+          dynamicTyping: true
+        })
+        setData(results.data)
+      }
     }
     dataUrl && loadData()
   }, [dataUrl])
@@ -218,7 +228,7 @@ addPropertyControls(Table, {
   dataUrl: {
     title: "Data",
     type: ControlType.File,
-    allowedFileTypes: ["json"]
+    allowedFileTypes: ["json", "csv"]
   },
   fill: {
     title: "Fill",
