@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Frame, addPropertyControls, ControlType, RenderTarget } from "framer"
-import { useTable } from "react-table"
+import { useTable, Row } from "react-table"
 import styled, { css } from "styled-components"
 import * as defaultData from "./defaultData.json"
 import * as Papa from "papaparse"
@@ -86,7 +86,13 @@ function GridThumbnail({ size = 24 }) {
   )
 }
 
-function TableUI({ columns, data }) {
+function getRowStyle(row: Row, rowStyle) {
+  if (typeof rowStyle === "function") {
+    return rowStyle(row) || {}
+  } else return {}
+}
+
+function TableUI({ columns, data, rowStyle }) {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -117,10 +123,9 @@ function TableUI({ columns, data }) {
         {rows.map((row, i) => {
           prepareRow(row)
           return (
-            <tr {...row.getRowProps()}>
+            <tr {...row.getRowProps()} style={getRowStyle(row, rowStyle)}>
               {row.cells.map(cell => {
                 // console.log(cell)
-
                 return (
                   <td {...cell.getCellProps()} align={cell.column.align}>
                     {cell.render("Cell")}
@@ -223,7 +228,7 @@ function useLoadConvertedData(dataUrl, rowConverter) {
 }
 
 function TableWithData(props) {
-  const { dataUrl, columns, preset, rowConverter, ...rest } = props
+  const { dataUrl, columns, preset, rowConverter, rowStyle, ...rest } = props
   const data = useLoadConvertedData(dataUrl, rowConverter)
 
   const mergedColumns = React.useMemo(() => createColumns(data, columns), [
@@ -234,7 +239,7 @@ function TableWithData(props) {
     <div>Loading data...</div>
   ) : (
     <Styles {...rest}>
-      <TableUI columns={mergedColumns} data={data} />
+      <TableUI columns={mergedColumns} data={data} rowStyle={rowStyle} />
     </Styles>
   )
 }

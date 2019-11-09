@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Override, Data } from "framer"
-import { AvatarCell } from "./canvas"
+import { AvatarCell, Checkbox, CheckboxChecked } from "./canvas"
 
 export function TableMultiField(props): Override {
   return {
@@ -22,7 +22,8 @@ export function TableMultiField(props): Override {
             position="relative"
           />
         )
-      }
+      },
+      { accessor: "email" }
     ]
   }
 }
@@ -38,5 +39,27 @@ export function TableAvatar(props): Override {
         )
       }
     ]
+  }
+}
+
+export function TableCheckboxes(props): Override {
+  return {
+    columns: [
+      {
+        accessor: "id",
+        Header: null,
+        Cell: ({ row: { index } }) =>
+          index === 4 ? (
+            <CheckboxChecked position="relative" />
+          ) : (
+            <Checkbox position="relative" />
+          ),
+        align: "left"
+      }
+    ],
+    rowStyle: ({ index }) =>
+      index === 4 && {
+        background: "#EFF4FE"
+      }
   }
 }
