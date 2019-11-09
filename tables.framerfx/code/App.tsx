@@ -63,3 +63,11 @@ export function TableCheckboxes(props): Override {
       }
   }
 }
+
+export function TablePattern(props): Override {
+  return {
+    rowStyle: ({ index }) => ({
+      background: index % 2 === 1 ? "transparent" : "#f0f0f0"
+    })
+  }
+}

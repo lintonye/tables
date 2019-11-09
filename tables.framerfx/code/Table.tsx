@@ -88,8 +88,8 @@ function GridThumbnail({ size = 24 }) {
 
 function getRowStyle(row: Row, rowStyle) {
   if (typeof rowStyle === "function") {
-    return rowStyle(row) || {}
-  } else return {}
+    return rowStyle(row) || null
+  } else return null
 }
 
 function TableUI({ columns, data, rowStyle }) {
