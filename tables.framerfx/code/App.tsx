@@ -6,13 +6,14 @@ export function TableMultiField(props): Override {
   return {
     columns: [
       { accessor: "id", show: false },
+      { accessor: "firstName", show: false },
+      { accessor: "lastName", show: false },
+      { accessor: "avatar", show: false },
       {
         accessor: "names",
         Cell: ({
           row: {
-            original: {
-              names: { firstName, avatar }
-            }
+            original: { firstName, avatar }
           }
         }) => (
           <AvatarCell
@@ -22,12 +23,7 @@ export function TableMultiField(props): Override {
           />
         )
       }
-    ],
-    rowConverter: ({ firstName, lastName, avatar, email, age }) => ({
-      names: { firstName, lastName, avatar },
-      email,
-      age
-    })
+    ]
   }
 }
 
