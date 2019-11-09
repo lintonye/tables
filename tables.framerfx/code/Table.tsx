@@ -225,7 +225,6 @@ function useLoadConvertedData(dataUrl, rowConverter) {
 function TableWithData(props) {
   const { dataUrl, columns, preset, rowConverter, ...rest } = props
   const data = useLoadConvertedData(dataUrl, rowConverter)
-  console.log(data)
 
   const mergedColumns = React.useMemo(() => createColumns(data, columns), [
     data,
