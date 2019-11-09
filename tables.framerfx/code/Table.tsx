@@ -301,7 +301,7 @@ export const Presets = {
     color: "black",
     headerFontSize: 14,
     headerColor: "#FFF",
-    headerBgColor: "#5f6366",
+    headerBgColor: "#7755CC",
     headerDividerWidth: 1,
     headerDividerColor: "#d2cfd8",
     borderWidth: 0,
