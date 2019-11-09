@@ -8,22 +8,27 @@ export function TableMultiField(props): Override {
       { accessor: "id", show: false },
       { accessor: "firstName", show: false },
       { accessor: "lastName", show: false },
+      { accessor: "gender", show: false },
+      { accessor: "age", show: false },
       { accessor: "avatar", show: false },
       {
         accessor: "names",
+        Header: "Who",
         Cell: ({
           row: {
-            original: { firstName, avatar }
+            original: { firstName, lastName, avatar, age, gender }
           }
         }) => (
           <AvatarCell
-            firstName={firstName}
+            firstName={firstName + " " + lastName}
             avatar={avatar}
+            age={age + ""}
+            gender={gender === "Male" ? "♂" : "♀"}
             position="relative"
           />
         )
       },
-      { accessor: "email" }
+      { accessor: "email", Header: "Email" }
     ]
   }
 }
