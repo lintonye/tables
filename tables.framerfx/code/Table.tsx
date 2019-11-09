@@ -173,6 +173,8 @@ function useCanvasOverride(props) {
     async function loadModule() {
       try {
         setOverrideProps("loading")
+        // const m = await import(`../../../../code/${canvasOverride}`)
+        // dev only
         const m = await import(`./${canvasOverride}`)
         const overrideFun = m[overrideFunctionName]
         setOverrideProps(

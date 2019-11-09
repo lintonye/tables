@@ -9,7 +9,8 @@
 		"react": "^16.8"
 	},
 	"framer": {
-		"id": "96a82607-7269-40ef-8dbb-508fbea51218"
+		"id": "96a82607-7269-40ef-8dbb-508fbea51218",
+		"displayName": "Data Grid (Table)"
 	},
 	"author": "Linton Ye",
 	"dependencies": {
@@ -18,5 +19,7 @@
 		"react-dom": "^16.11.0",
 		"react-table": "^7.0.0-beta.12",
 		"styled-components": "^4.4.1"
-	}
+	},
+	"name": "@framer/jimulabs.data-grid-table",
+	"version": "1.4.0"
 }

@@ -1,0 +1,18 @@
+{
+	"main": "dist/index.js",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/react": "^16.8"
+	},
+	"peerDependencies": {
+		"framer": "^1.0",
+		"react": "^16.8"
+	},
+	"framer": {
+		"id": "85fc1c5b-2244-4921-a6c3-6a69298b46ae"
+	},
+	"author": "Linton Ye",
+	"dependencies": {
+		"@framer/jimulabs.data-grid-table": "^1.4.0"
+	}
+}

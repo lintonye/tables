@@ -7,6 +7,6 @@ A data grid/table component that helps you design data grids with real data. Thi
 - Advanced customization via Overrides
 
 # Change log
-- November 8, 2019
+- November 9, 2019
   - First version
 
