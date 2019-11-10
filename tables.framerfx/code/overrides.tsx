@@ -38,7 +38,7 @@ export function overrideFunctionNames(overrideFileName) {
 function getModule(overrideFileName) {
   // if (modules && overrideFileName) {
   const moduleFactory = modules[overrideFileName]
-  return moduleFactory()
+  return typeof moduleFactory === "function" && moduleFactory()
   // }
 }
 
@@ -46,6 +46,6 @@ export function getOverride(fileName, functionName) {
   // if (modules && fileName && functionName) {
   const module = getModule(fileName)
   // alert(Object.keys(module))
-  return module[functionName]
+  return module && module[functionName]
   // }
 }

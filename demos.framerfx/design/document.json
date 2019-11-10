@@ -64,7 +64,10 @@
                   "overrideFunction" : "TableMultiField",
                   "padding" : 8
                 },
-                "codeOverrideEnabled" : false,
+                "codeOverrideEnabled" : true,
+                "codeOverrideFile" : ".\/App.tsx",
+                "codeOverrideIdentifier" : ".\/App.tsx_TableMultiField",
+                "codeOverrideName" : "TableMultiField",
                 "constraintsLocked" : false,
                 "deviceType" : null,
                 "exportOptions" : [

@@ -250,19 +250,27 @@ function TableWithData(props) {
 function TableOnCanvas(props) {
   // const [loadingModules, mergedProps] = useCanvasOverride(props)
   const { overrideFile, overrideFunction, ...rest } = props
-  const override = getOverride(overrideFile, overrideFunction)
+  const override = getOverride(
+    overrideFile.endsWith(".tsx") ? overrideFile : `./${overrideFile}.tsx`,
+    overrideFunction
+  )
   // alert(override)
   const mergedProps =
     typeof override === "function" ? { ...rest, ...override() } : rest
 
   return <TableWithData {...mergedProps} />
 }
+function TableInPreview(props) {
+  return <TableWithData {...props} />
+}
 
 function Table(props) {
   return RenderTarget.current() === RenderTarget.thumbnail ? (
     <GridThumbnail size={400} />
-  ) : (
+  ) : RenderTarget.current() === RenderTarget.canvas ? (
     <TableOnCanvas {...props} />
+  ) : (
+    <TableInPreview {...props} />
   )
 }
 
@@ -493,8 +501,8 @@ Object.keys(Presets).forEach(k => {
       },
       overrideFile: {
         title: "File",
-        type: ControlType.Enum,
-        options: overrideFileNames()
+        type: ControlType.String,
+        defaultValue: "App"
       },
       overrideFunction: {
         title: "Override",
