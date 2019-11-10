@@ -19,7 +19,7 @@ In addition to more controls for the styles, an exciting possibility is that we 
 - ..., basically anything supported by react-table is a possibility
 
 # Contact
-Find me on [Twitter](https://twitter.com/lintonye). Share with what you build, I'd be thrilled to see it!
+Find me on [Twitter](https://twitter.com/lintonye). Share with me what you build, I'd be thrilled to see it!
 
 # Change log
 - November 10, 2019
