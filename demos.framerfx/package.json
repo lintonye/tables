@@ -13,6 +13,6 @@
 	},
 	"author": "Linton Ye",
 	"dependencies": {
-		"@framer/jimulabs.data-grid-table": "^1.4.0"
+		"@framer/jimulabs.data-grid-table": "^1.7.0"
 	}
 }

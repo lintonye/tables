@@ -120,10 +120,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.4.tgz#a87b4b04e5ae14a88d48ebef15015f6b7d1f5677"
   integrity sha512-kBa+cDHOR9jpRJ+kcGMsysrls0leukrm68DmFQoMIWQcXdr2cZvyvypWuGYT7U+9kAExUE7+T7r6G3C3A6L8MQ==
 
-"@framer/jimulabs.data-grid-table@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.framer.com/@framer/jimulabs.data-grid-table/-/@framer/jimulabs.data-grid-table-1.4.0.tgz#ffd0aa3aef071353a78d5e8c22e8bacb505ea895"
-  integrity sha512-Rk2RHuYsQyKQL8wZWcoMLGQqeQPWbtxnSkOUv3Vrs5yo5ZknhgdhoHTJaJ3/Wndd0se6mie67ZHIY4ZhoFGReQ==
+"@framer/jimulabs.data-grid-table@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.framer.com/@framer/jimulabs.data-grid-table/-/@framer/jimulabs.data-grid-table-1.7.0.tgz#118f1c1f1f01bfae749dccc5c919d8c0ab5ff64b"
+  integrity sha512-+jJjix29HM/q/Y9T0pyPL/VvzfemXD9F1ayOGObvkZXpP3qLyV3LHAN3OkYzxmiZNB7yop5uyrHypxpFMMjkpg==
   dependencies:
     papaparse "^5.1.0"
     react "^16.11.0"

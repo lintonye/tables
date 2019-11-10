@@ -4,6 +4,7 @@ import { useTable, Row } from "react-table"
 import styled, { css } from "styled-components"
 import * as defaultData from "./defaultData.json"
 import * as Papa from "papaparse"
+import { initOverrides, overrideFileNames, getOverride } from "./overrides"
 
 const Styles = styled.div`
   ${({
@@ -173,9 +174,9 @@ function useCanvasOverride(props) {
     async function loadModule() {
       try {
         setOverrideProps("loading")
-        // const m = await import(`../../../../code/${canvasOverride}`)
-        // dev only
-        const m = await import(`./${canvasOverride}`)
+        const m = await import(`../../../../../code/${canvasOverride}`)
+        // // dev only
+        // const m = await import(`./${canvasOverride}`)
         const overrideFun = m[overrideFunctionName]
         setOverrideProps(
           typeof overrideFun === "function" ? overrideFun() : null
@@ -247,13 +248,14 @@ function TableWithData(props) {
 }
 
 function TableOnCanvas(props) {
-  const [loadingModules, mergedProps] = useCanvasOverride(props)
+  // const [loadingModules, mergedProps] = useCanvasOverride(props)
+  const { overrideFile, overrideFunction, ...rest } = props
+  const override = getOverride(overrideFile, overrideFunction)
+  // alert(override)
+  const mergedProps =
+    typeof override === "function" ? { ...rest, ...override() } : rest
 
-  return loadingModules ? (
-    <div>Loading...</div>
-  ) : (
-    <TableWithData {...mergedProps} />
-  )
+  return <TableWithData {...mergedProps} />
 }
 
 function Table(props) {
@@ -368,6 +370,8 @@ function setDefaultValue(preset, propertyControls) {
   })
   return propertyControls
 }
+
+initOverrides()
 
 Object.keys(Presets).forEach(k => {
   const preset = Presets[k]
@@ -487,13 +491,13 @@ Object.keys(Presets).forEach(k => {
         max: 40,
         defaultValue: 0
       },
-      canvasOverride: {
-        title: "Canvas Override",
-        type: ControlType.String,
-        defaultValue: "App"
+      overrideFile: {
+        title: "File",
+        type: ControlType.Enum,
+        options: overrideFileNames()
       },
-      overrideFunctionName: {
-        title: "Override function",
+      overrideFunction: {
+        title: "Override",
         type: ControlType.String
         // defaultValue: "Table"
       }

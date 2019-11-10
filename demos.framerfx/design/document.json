@@ -46,7 +46,6 @@
                 "codeComponentProps" : {
                   "borderColor" : "#d2cfd8",
                   "borderWidth" : 0,
-                  "canvasOverride" : "App",
                   "cellBorderRadius" : 0,
                   "color" : "black",
                   "dataUrl" : "design\/assets\/people.json",
@@ -61,7 +60,8 @@
                   "headerDividerColor" : "#888398",
                   "headerDividerWidth" : 2,
                   "headerFontSize" : 18,
-                  "overrideFunctionName" : "TableMultiField",
+                  "overrideFile" : ".\/App.tsx",
+                  "overrideFunction" : "TableMultiField",
                   "padding" : 8
                 },
                 "codeOverrideEnabled" : false,
@@ -195,7 +195,6 @@
                 "codeComponentProps" : {
                   "borderColor" : "#d2cfd8",
                   "borderWidth" : 0,
-                  "canvasOverride" : "App",
                   "cellBorderRadius" : 6,
                   "color" : "black",
                   "dividerColor" : "#d2cfd8",
@@ -209,7 +208,8 @@
                   "headerDividerColor" : "#d2cfd8",
                   "headerDividerWidth" : 1,
                   "headerFontSize" : 14,
-                  "overrideFunctionName" : "",
+                  "overrideFile" : ".\/App.tsx",
+                  "overrideFunction" : "",
                   "padding" : 10
                 },
                 "codeOverrideEnabled" : false,
@@ -343,7 +343,6 @@
                 "codeComponentProps" : {
                   "borderColor" : "#d2cfd8",
                   "borderWidth" : 0,
-                  "canvasOverride" : "App",
                   "cellBorderRadius" : 0,
                   "color" : "black",
                   "dividerColor" : "#d2cfd8",
@@ -357,7 +356,8 @@
                   "headerDividerColor" : "#888398",
                   "headerDividerWidth" : 2,
                   "headerFontSize" : 12,
-                  "overrideFunctionName" : "TableCheckboxes",
+                  "overrideFile" : ".\/App.tsx",
+                  "overrideFunction" : "TableCheckboxes",
                   "padding" : 8
                 },
                 "codeOverrideEnabled" : false,
@@ -491,7 +491,6 @@
                 "codeComponentProps" : {
                   "borderColor" : "#d2cfd8",
                   "borderWidth" : 0,
-                  "canvasOverride" : "App",
                   "cellBorderRadius" : 0,
                   "color" : "black",
                   "dividerColor" : "#d2cfd8",
@@ -505,7 +504,8 @@
                   "headerDividerColor" : "#888398",
                   "headerDividerWidth" : 0,
                   "headerFontSize" : 12,
-                  "overrideFunctionName" : "TablePattern",
+                  "overrideFile" : ".\/App.tsx",
+                  "overrideFunction" : "TablePattern",
                   "padding" : 8
                 },
                 "codeOverrideEnabled" : false,
