@@ -1,10 +1,12 @@
 A data grid/table component that helps you design data grids with real data. This is a proof of concept based on [react-table](https://github.com/tannerlinsley/react-table). It only scratches the surface of what's possible, but it seems already useful!
 
+Click [here](https://github.com/lintonye/tables/raw/master/demos.framerx) to download the demo file.
+
 # Supported features
 - Import JSON and CSV files
 - Customize many table properties such as font sizes, colors, dividers, borders, padding, gap.
 - Multiple presets (as different components)
-- Advanced customization via Overrides
+- Advanced customization via Overrides (Docs coming soon.)
 
 # Possible future features
 Like I said, the current version of this package only scratches the surface of what's possible.
