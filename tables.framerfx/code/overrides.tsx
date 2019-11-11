@@ -1,7 +1,9 @@
+// import { componentLoader } from "framer"
+
 let modules = null
 // let _overrideFileNames = []
 
-export function initOverrides() {
+function initOverrides() {
   if (modules === null && window.Vekter) {
     const bundleNames = [
       ...Object.keys(window.Vekter.engine.canvasStore.userScriptBundle)
@@ -19,21 +21,21 @@ export function initOverrides() {
   // alert(model.exports)
 }
 
-export function overrideFileNames() {
-  return modules
-    ? Object.keys(modules).filter(n => {
-        // const info = getModule(n).__info__
-        // return info && info.type === "override"
-        return true
-      })
-    : []
-}
+// export function overrideFileNames() {
+//   return modules
+//     ? Object.keys(modules).filter(n => {
+//         // const info = getModule(n).__info__
+//         // return info && info.type === "override"
+//         return true
+//       })
+//     : []
+// }
 
-export function overrideFunctionNames(overrideFileName) {
-  // if (overrideFileName && modules) {
-  return Object.keys(getModule(overrideFileName))
-  // } else return []
-}
+// export function overrideFunctionNames(overrideFileName) {
+//   // if (overrideFileName && modules) {
+//   return Object.keys(getModule(overrideFileName))
+//   // } else return []
+// }
 
 function getModule(overrideFileName) {
   // if (modules && overrideFileName) {
@@ -43,9 +45,24 @@ function getModule(overrideFileName) {
 }
 
 export function getOverride(fileName, functionName) {
+  initOverrides()
   // if (modules && fileName && functionName) {
   const module = getModule(fileName)
   // alert(Object.keys(module))
   return module && module[functionName]
   // }
+}
+
+export function getOverrideByComponentId(componentId) {
+  const regex = /^(\w+)(\.\/[\w\.]+)?/
+  const match = componentId.match(regex)
+  if (match) {
+    const node = window.Vekter.engine.tree.get(match[1])
+    // alert(window.Vekter.engine.tree.idToNode)
+    // alert("id=" + componentId + " node=" + node)
+    if (node) {
+      const { codeOverrideFile, codeOverrideName } = node
+      return getOverride(codeOverrideFile, codeOverrideName)
+    }
+  }
 }

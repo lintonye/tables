@@ -60,8 +60,6 @@
                   "headerDividerColor" : "#888398",
                   "headerDividerWidth" : 2,
                   "headerFontSize" : 18,
-                  "overrideFile" : "App",
-                  "overrideFunction" : "TableMultiField",
                   "padding" : 8
                 },
                 "codeOverrideEnabled" : true,
@@ -211,8 +209,6 @@
                   "headerDividerColor" : "#888398",
                   "headerDividerWidth" : 0,
                   "headerFontSize" : 12,
-                  "overrideFile" : "App",
-                  "overrideFunction" : "TablePattern",
                   "padding" : 8
                 },
                 "codeOverrideEnabled" : true,
@@ -338,9 +334,9 @@
               {
                 "__class" : "CodeComponentNode",
                 "aspectRatio" : null,
-                "bottom" : 0,
+                "bottom" : -1,
                 "centerAnchorX" : 0.5,
-                "centerAnchorY" : 0.5,
+                "centerAnchorY" : 0.50301204819277112,
                 "children" : [
 
                 ],
@@ -362,8 +358,6 @@
                   "headerDividerColor" : "#d2cfd8",
                   "headerDividerWidth" : 1,
                   "headerFontSize" : 12,
-                  "overrideFile" : "App",
-                  "overrideFunction" : "TableCheckboxes",
                   "padding" : 8
                 },
                 "codeOverrideEnabled" : true,
@@ -383,7 +377,7 @@
                 "fillImagePixelWidth" : null,
                 "fillImageResize" : "fill",
                 "fillType" : "color",
-                "height" : 394,
+                "height" : 332,
                 "heightType" : 0,
                 "id" : "RRjNLXxy7",
                 "intrinsicHeight" : 400,
@@ -404,9 +398,9 @@
                 "radiusTopRight" : 0,
                 "right" : 0,
                 "rotation" : 0,
-                "top" : 0,
+                "top" : 1,
                 "visible" : true,
-                "width" : 354,
+                "width" : 412,
                 "widthType" : 0
               }
             ],
@@ -513,8 +507,6 @@
                   "headerDividerColor" : "#d2cfd8",
                   "headerDividerWidth" : 1,
                   "headerFontSize" : 23,
-                  "overrideFile" : "App",
-                  "overrideFunction" : "",
                   "padding" : 10
                 },
                 "codeOverrideEnabled" : false,

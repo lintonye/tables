@@ -4,7 +4,7 @@ import { useTable, Row } from "react-table"
 import styled, { css } from "styled-components"
 import * as defaultData from "./defaultData.json"
 import * as Papa from "papaparse"
-import { initOverrides, overrideFileNames, getOverride } from "./overrides"
+import { getOverrideByComponentId } from "./overrides"
 
 const Styles = styled.div`
   ${({
@@ -248,15 +248,9 @@ function TableWithData(props) {
 }
 
 function TableOnCanvas(props) {
-  // const [loadingModules, mergedProps] = useCanvasOverride(props)
-  const { overrideFile, overrideFunction, ...rest } = props
-  const override = getOverride(
-    overrideFile.endsWith(".tsx") ? overrideFile : `./${overrideFile}.tsx`,
-    overrideFunction
-  )
-  // alert(override)
+  const override = getOverrideByComponentId(props.id)
   const mergedProps =
-    typeof override === "function" ? { ...rest, ...override() } : rest
+    typeof override === "function" ? { ...props, ...override() } : props
 
   return <TableWithData {...mergedProps} />
 }
@@ -379,8 +373,6 @@ function setDefaultValue(preset, propertyControls) {
   return propertyControls
 }
 
-initOverrides()
-
 Object.keys(Presets).forEach(k => {
   const preset = Presets[k]
   preset.component.defaultProps = {
@@ -498,17 +490,17 @@ Object.keys(Presets).forEach(k => {
         min: 0,
         max: 40,
         defaultValue: 0
-      },
-      overrideFile: {
-        title: "File",
-        type: ControlType.String,
-        defaultValue: "App"
-      },
-      overrideFunction: {
-        title: "Override",
-        type: ControlType.String
-        // defaultValue: "Table"
       }
+      // overrideFile: {
+      //   title: "File",
+      //   type: ControlType.String,
+      //   defaultValue: "App"
+      // },
+      // overrideFunction: {
+      //   title: "Override",
+      //   type: ControlType.String
+      //   // defaultValue: "Table"
+      // }
     })
   )
 })
