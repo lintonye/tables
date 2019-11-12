@@ -24,6 +24,8 @@ In addition to more controls for the styles, an exciting possibility is that we 
 Find me on [Twitter](https://twitter.com/lintonye). Share with me what you build, I'd be thrilled to see it!
 
 # Change log
+- November 11, 2019
+  - Support `rowProps`
 - November 10, 2019
   - First version
 

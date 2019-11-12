@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Frame, addPropertyControls, ControlType, RenderTarget } from "framer"
+import { addPropertyControls, ControlType, RenderTarget, motion } from "framer"
 import { useTable, Row } from "react-table"
 import styled, { css } from "styled-components"
 import * as defaultData from "./defaultData.json"
@@ -87,13 +87,16 @@ function GridThumbnail({ size = 24 }) {
   )
 }
 
-function getRowStyle(row: Row, rowStyle) {
-  if (typeof rowStyle === "function") {
-    return rowStyle(row) || null
-  } else return null
+function getRowProps(row: Row, rowProps) {
+  switch (typeof rowProps) {
+    case "object":
+      return rowProps
+    case "function":
+      return rowProps(row)
+  }
 }
 
-function TableUI({ columns, data, rowStyle }) {
+function TableUI({ columns, data, rowProps }) {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -121,19 +124,20 @@ function TableUI({ columns, data, rowStyle }) {
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
-        {rows.map((row, i) => {
+        {rows.map(row => {
           prepareRow(row)
           return (
-            <tr {...row.getRowProps()} style={getRowStyle(row, rowStyle)}>
+            <motion.tr {...row.getRowProps()} {...getRowProps(row, rowProps)}>
               {row.cells.map(cell => {
-                // console.log(cell)
+                console.log(rowProps)
+
                 return (
                   <td {...cell.getCellProps()} align={cell.column.align}>
                     {cell.render("Cell")}
                   </td>
                 )
               })}
-            </tr>
+            </motion.tr>
           )
         })}
       </tbody>
@@ -165,38 +169,6 @@ function createColumns(data, columnsOverride = []) {
       : Object.keys(row).map(defaultColumn)
   }
   return []
-}
-
-function useCanvasOverride(props) {
-  const { canvasOverride, overrideFunctionName, ...rest } = props
-  const [overrideProps, setOverrideProps] = React.useState(null)
-  React.useEffect(() => {
-    async function loadModule() {
-      try {
-        setOverrideProps("loading")
-        const m = await import(`../../../../../code/${canvasOverride}`)
-        // // dev only
-        // const m = await import(`./${canvasOverride}`)
-        const overrideFun = m[overrideFunctionName]
-        setOverrideProps(
-          typeof overrideFun === "function" ? overrideFun() : null
-        )
-      } catch (e) {
-        console.log(
-          `Failed to load canvas override, file=${canvasOverride} funName=${overrideFunctionName}`,
-          e
-        )
-        setOverrideProps(null)
-      }
-    }
-    loadModule()
-  }, [canvasOverride, overrideFunctionName])
-  return [
-    overrideProps === "loading",
-    overrideProps !== null && overrideProps !== "loading"
-      ? { ...rest, ...overrideProps }
-      : rest
-  ]
 }
 
 function useLoadConvertedData(dataUrl, rowConverter) {
@@ -231,7 +203,7 @@ function useLoadConvertedData(dataUrl, rowConverter) {
 }
 
 function TableWithData(props) {
-  const { dataUrl, columns, preset, rowConverter, rowStyle, ...rest } = props
+  const { dataUrl, columns, preset, rowConverter, rowProps, ...rest } = props
   const data = useLoadConvertedData(dataUrl, rowConverter)
 
   const mergedColumns = React.useMemo(() => createColumns(data, columns), [
@@ -242,7 +214,7 @@ function TableWithData(props) {
     <div>Loading data...</div>
   ) : (
     <Styles {...rest}>
-      <TableUI columns={mergedColumns} data={data} rowStyle={rowStyle} />
+      <TableUI columns={mergedColumns} data={data} rowProps={rowProps} />
     </Styles>
   )
 }
