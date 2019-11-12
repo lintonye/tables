@@ -83,8 +83,47 @@ export function TableCheckboxes(props): Override {
 
 export function TablePattern(props): Override {
   return {
-    rowStyle: ({ index }) => ({
-      background: index % 2 === 1 ? "transparent" : "#f0f0f0"
+    rowProps: ({ index }) => ({
+      style: {
+        background: index % 2 === 1 ? "transparent" : "#f0f0f0"
+      }
+    })
+  }
+}
+
+const hoverData = Data({ hoveredIndex: -1 })
+export function TableHoverActions(props): Override {
+  return {
+    columns: [
+      { accessor: "symbol" },
+      { accessor: "market" },
+      { accessor: "price" },
+      { accessor: "id", show: false },
+      {
+        accessor: "actions",
+        Header: null,
+        Cell: ({ row: { index } }) => (
+          <div style={{ width: 80 }}>
+            {index === hoverData.hoveredIndex && (
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  cursor: "pointer"
+                }}
+              >
+                <span>🗑</span>
+                <span>✋</span>
+                <span>💾</span>
+              </div>
+            )}
+          </div>
+        )
+      }
+    ],
+    rowProps: ({ index }) => ({
+      onMouseEnter: () => (hoverData.hoveredIndex = index)
     })
   }
 }
