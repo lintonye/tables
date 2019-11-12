@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Override, Data } from "framer"
+import { Override, Data, RenderTarget } from "framer"
 import { AvatarCell, Checkbox, CheckboxChecked } from "./canvas"
 
 export function TableMultiField(props): Override {
@@ -47,6 +47,9 @@ export function TableAvatar(props): Override {
   }
 }
 
+const appState = Data({
+  selectedIndex: RenderTarget.current() === RenderTarget.canvas ? 4 : -1
+})
 export function TableCheckboxes(props): Override {
   return {
     columns: [
@@ -54,7 +57,7 @@ export function TableCheckboxes(props): Override {
         accessor: "id",
         Header: null,
         Cell: ({ row: { index } }) =>
-          index === 4 ? (
+          index === appState.selectedIndex ? (
             <CheckboxChecked position="relative" />
           ) : (
             <Checkbox position="relative" />
@@ -62,10 +65,19 @@ export function TableCheckboxes(props): Override {
         align: "left"
       }
     ],
-    rowStyle: ({ index }) =>
-      index === 4 && {
-        background: "#EFF4FE"
-      }
+    rowProps: ({ index }) => ({
+      initial: {
+        backgroundColor: "#FFF"
+      },
+      animate: {
+        backgroundColor: index === appState.selectedIndex ? "#EFF4FE" : "#FFF"
+      },
+      whileHover: {
+        backgroundColor: "#F1FFFE"
+      },
+      style: { cursor: "pointer" },
+      onClick: () => (appState.selectedIndex = index)
+    })
   }
 }
 
