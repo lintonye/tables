@@ -1,6 +1,12 @@
 import * as React from "react"
-import { addPropertyControls, ControlType, RenderTarget, motion } from "framer"
-import { useTable, Row } from "react-table"
+import {
+  addPropertyControls,
+  ControlType,
+  RenderTarget,
+  motion,
+  AnimatePresence
+} from "framer"
+import { useTable, Row, useExpanded } from "react-table"
 import styled, { css } from "styled-components"
 import * as defaultData from "./defaultData.json"
 import * as Papa from "papaparse"
@@ -96,18 +102,22 @@ function getRowProps(row: Row, rowProps) {
   }
 }
 
-function TableUI({ header, columns, data, rowProps }) {
+function TableUI({ header, columns, data, rowProps, renderSubRow }) {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
-    prepareRow
-  } = useTable({
-    columns,
-    data
-  })
+    prepareRow,
+    flatColumns
+  } = useTable(
+    {
+      columns,
+      data
+    },
+    useExpanded
+  )
 
   // Render the UI for your table
   return (
@@ -129,15 +139,22 @@ function TableUI({ header, columns, data, rowProps }) {
         {rows.map(row => {
           prepareRow(row)
           return (
-            <motion.tr {...row.getRowProps()} {...getRowProps(row, rowProps)}>
-              {row.cells.map(cell => {
-                return (
-                  <td {...cell.getCellProps()} align={cell.column.align}>
-                    {cell.render("Cell")}
-                  </td>
-                )
-              })}
-            </motion.tr>
+            <>
+              <motion.tr {...row.getRowProps()} {...getRowProps(row, rowProps)}>
+                {row.cells.map(cell => {
+                  return (
+                    <td {...cell.getCellProps()} align={cell.column.align}>
+                      {cell.render("Cell")}
+                    </td>
+                  )
+                })}
+              </motion.tr>
+              {row.isExpanded && (
+                <tr>
+                  <td colSpan={flatColumns.length}>{renderSubRow(row)}</td>
+                </tr>
+              )}
+            </>
           )
         })}
       </tbody>
@@ -213,6 +230,7 @@ function TableWithData(props) {
     rowConverter,
     rowProps,
     header,
+    subRow,
     ...rest
   } = props
   const data = useLoadConvertedData(dataUrl, rowConverter)
@@ -230,6 +248,7 @@ function TableWithData(props) {
         data={data}
         rowProps={rowProps}
         header={header}
+        renderSubRow={subRow}
       />
     </Styles>
   )
