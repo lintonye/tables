@@ -1,0 +1,4 @@
+airline,departure,arrival,startTime,endTime,duration,stops,price
+Alaska,SFO,YYJ,08:00,12:36,4 h 36 m,1,2294
+Air Canada,SFO,YYJ,06:20,10:29,4 h 9 m,1,2294
+Alaska,SFO,YYJ,10:25,14:35,4 h 10 m,1,2294
