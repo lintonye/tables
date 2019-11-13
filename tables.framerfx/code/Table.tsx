@@ -131,8 +131,6 @@ function TableUI({ header, columns, data, rowProps }) {
           return (
             <motion.tr {...row.getRowProps()} {...getRowProps(row, rowProps)}>
               {row.cells.map(cell => {
-                console.log(rowProps)
-
                 return (
                   <td {...cell.getCellProps()} align={cell.column.align}>
                     {cell.render("Cell")}
@@ -147,7 +145,7 @@ function TableUI({ header, columns, data, rowProps }) {
   )
 }
 
-function createColumns(data, columnsOverride = []) {
+function createColumns(data, showDefaultColumns = true, columnsOverride = []) {
   if (Array.isArray(data) && data.length > 0) {
     // infer columns from the first row
     const row = data[0]
@@ -162,11 +160,13 @@ function createColumns(data, columnsOverride = []) {
             ...defaultColumn(c.accessor),
             ...c
           })),
-          ...Object.keys(row)
-            .filter(
-              key => columnsOverride.findIndex(c => c.accessor === key) < 0
-            )
-            .map(defaultColumn)
+          ...(showDefaultColumns
+            ? Object.keys(row)
+                .filter(
+                  key => columnsOverride.findIndex(c => c.accessor === key) < 0
+                )
+                .map(defaultColumn)
+            : [])
         ]
       : Object.keys(row).map(defaultColumn)
   }
@@ -208,6 +208,7 @@ function TableWithData(props) {
   const {
     dataUrl,
     columns,
+    showDefaultColumns = true,
     preset,
     rowConverter,
     rowProps,
@@ -216,10 +217,10 @@ function TableWithData(props) {
   } = props
   const data = useLoadConvertedData(dataUrl, rowConverter)
 
-  const mergedColumns = React.useMemo(() => createColumns(data, columns), [
-    data,
-    columns
-  ])
+  const mergedColumns = React.useMemo(
+    () => createColumns(data, showDefaultColumns, columns),
+    [data, columns]
+  )
   return data === null ? (
     <div>Loading data...</div>
   ) : (
