@@ -96,7 +96,7 @@ function getRowProps(row: Row, rowProps) {
   }
 }
 
-function TableUI({ columns, data, rowProps }) {
+function TableUI({ header, columns, data, rowProps }) {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -112,17 +112,19 @@ function TableUI({ columns, data, rowProps }) {
   // Render the UI for your table
   return (
     <table {...getTableProps()}>
-      <thead>
-        {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()} align={column.align}>
-                {column.render("Header")}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
+      {header && (
+        <thead>
+          {headerGroups.map(headerGroup => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map(column => (
+                <th {...column.getHeaderProps()} align={column.align}>
+                  {column.render("Header")}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+      )}
       <tbody {...getTableBodyProps()}>
         {rows.map(row => {
           prepareRow(row)
@@ -203,7 +205,15 @@ function useLoadConvertedData(dataUrl, rowConverter) {
 }
 
 function TableWithData(props) {
-  const { dataUrl, columns, preset, rowConverter, rowProps, ...rest } = props
+  const {
+    dataUrl,
+    columns,
+    preset,
+    rowConverter,
+    rowProps,
+    header,
+    ...rest
+  } = props
   const data = useLoadConvertedData(dataUrl, rowConverter)
 
   const mergedColumns = React.useMemo(() => createColumns(data, columns), [
@@ -214,7 +224,12 @@ function TableWithData(props) {
     <div>Loading data...</div>
   ) : (
     <Styles {...rest}>
-      <TableUI columns={mergedColumns} data={data} rowProps={rowProps} />
+      <TableUI
+        columns={mergedColumns}
+        data={data}
+        rowProps={rowProps}
+        header={header}
+      />
     </Styles>
   )
 }
@@ -381,34 +396,44 @@ Object.keys(Presets).forEach(k => {
         type: ControlType.Color,
         defaultValue: "black"
       },
+      header: {
+        title: "Header",
+        type: ControlType.Boolean,
+        defaultValue: true
+      },
       headerFontSize: {
         title: "Header Font",
         type: ControlType.Number,
         min: 8,
         max: 60,
-        defaultValue: 12
+        defaultValue: 12,
+        hidden: ({ header }) => !header
       },
       headerColor: {
         title: "Header FG",
         type: ControlType.Color,
-        defaultValue: "black"
+        defaultValue: "black",
+        hidden: ({ header }) => !header
       },
       headerBgColor: {
         title: "Header BG",
         type: ControlType.Color,
-        defaultValue: "transparent"
+        defaultValue: "transparent",
+        hidden: ({ header }) => !header
       },
       headerDividerWidth: {
         title: "Header Divider",
         type: ControlType.Number,
         min: 0,
         max: 4,
-        defaultValue: 1
+        defaultValue: 1,
+        hidden: ({ header }) => !header
       },
       headerDividerColor: {
         title: "Header Divider",
         type: ControlType.Color,
-        defaultValue: "#DDD"
+        defaultValue: "#DDD",
+        hidden: ({ header }) => !header
       },
       borderWidth: {
         title: "Border",
