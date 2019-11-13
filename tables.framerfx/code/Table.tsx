@@ -248,7 +248,9 @@ function TableWithData(props) {
         data={data}
         rowProps={rowProps}
         header={header}
-        renderSubRow={subRow}
+        renderSubRow={row =>
+          typeof subRow === "function" ? subRow(row) : subRow
+        }
       />
     </Styles>
   )
