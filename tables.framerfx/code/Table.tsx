@@ -102,7 +102,24 @@ function getRowProps(row: Row, rowProps) {
   }
 }
 
-function TableUI({ header, columns, data, rowProps, renderSubRow, pageSize }) {
+function useInitialPageOptions(setPageSize, gotoPage, pageSize, pageIndex) {
+  React.useEffect(() => {
+    setPageSize(pageSize)
+  }, [pageSize, setPageSize])
+  React.useEffect(() => {
+    gotoPage(pageIndex)
+  }, [pageIndex, pageSize, gotoPage])
+}
+
+function TableUI({
+  header,
+  columns,
+  data,
+  rowProps,
+  renderSubRow,
+  pageSize,
+  pageNumber
+}) {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -134,10 +151,7 @@ function TableUI({ header, columns, data, rowProps, renderSubRow, pageSize }) {
     useExpanded,
     usePagination
   )
-  React.useEffect(() => {
-    setPageSize(pageSize)
-  }, [pageSize])
-
+  useInitialPageOptions(setPageSize, gotoPage, pageSize, pageNumber - 1)
   // Render the UI for your table
   return (
     <table {...getTableProps()}>
@@ -251,6 +265,7 @@ function TableWithData(props) {
     header,
     subRow,
     pageSize,
+    pageNumber,
     ...rest
   } = props
   const data = useLoadConvertedData(dataUrl, rowConverter)
@@ -272,6 +287,7 @@ function TableWithData(props) {
           typeof subRow === "function" ? subRow(row) : subRow
         }
         pageSize={pageSize}
+        pageNumber={pageNumber}
       />
     </Styles>
   )
@@ -537,6 +553,11 @@ Object.keys(Presets).forEach(k => {
         step: 10,
         min: 10,
         max: 100
+      },
+      pageNumber: {
+        title: "Page",
+        type: ControlType.Number,
+        min: 1
       }
       // overrideFile: {
       //   title: "File",
