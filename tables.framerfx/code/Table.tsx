@@ -6,7 +6,7 @@ import {
   motion,
   AnimatePresence
 } from "framer"
-import { useTable, Row, useExpanded } from "react-table"
+import { useTable, Row, useExpanded, usePagination } from "react-table"
 import styled, { css } from "styled-components"
 import * as defaultData from "./defaultData.json"
 import * as Papa from "papaparse"
@@ -102,7 +102,7 @@ function getRowProps(row: Row, rowProps) {
   }
 }
 
-function TableUI({ header, columns, data, rowProps, renderSubRow }) {
+function TableUI({ header, columns, data, rowProps, renderSubRow, pageSize }) {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -110,14 +110,33 @@ function TableUI({ header, columns, data, rowProps, renderSubRow }) {
     headerGroups,
     rows,
     prepareRow,
-    flatColumns
+    flatColumns,
+
+    page, // Instead of using 'rows', we'll use page,
+    // which has only the rows for the active page
+
+    // The rest of these things are super handy, too ;)
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize
+    // state: { pageIndex, pageSize }
   } = useTable(
     {
       columns,
-      data
+      data,
+      initialState: { pageSize: 10 }
     },
-    useExpanded
+    useExpanded,
+    usePagination
   )
+  React.useEffect(() => {
+    setPageSize(pageSize)
+  }, [pageSize])
 
   // Render the UI for your table
   return (
@@ -136,7 +155,7 @@ function TableUI({ header, columns, data, rowProps, renderSubRow }) {
         </thead>
       )}
       <tbody {...getTableBodyProps()}>
-        {rows.map(row => {
+        {page.map(row => {
           prepareRow(row)
           return (
             <>
@@ -231,6 +250,7 @@ function TableWithData(props) {
     rowProps,
     header,
     subRow,
+    pageSize,
     ...rest
   } = props
   const data = useLoadConvertedData(dataUrl, rowConverter)
@@ -251,6 +271,7 @@ function TableWithData(props) {
         renderSubRow={row =>
           typeof subRow === "function" ? subRow(row) : subRow
         }
+        pageSize={pageSize}
       />
     </Styles>
   )
@@ -509,6 +530,13 @@ Object.keys(Presets).forEach(k => {
         min: 0,
         max: 40,
         defaultValue: 0
+      },
+      pageSize: {
+        title: "Page Size",
+        type: ControlType.Number,
+        step: 10,
+        min: 10,
+        max: 100
       }
       // overrideFile: {
       //   title: "File",
