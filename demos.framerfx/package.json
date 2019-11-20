@@ -13,6 +13,6 @@
 	},
 	"author": "Linton Ye",
 	"dependencies": {
-		"@framer/lintonye.data-grid-table": "^1.6.0"
+		"@framer/lintonye.data-grid-table": "^1.7.0"
 	}
 }
