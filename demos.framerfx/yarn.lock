@@ -120,10 +120,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.4.tgz#a87b4b04e5ae14a88d48ebef15015f6b7d1f5677"
   integrity sha512-kBa+cDHOR9jpRJ+kcGMsysrls0leukrm68DmFQoMIWQcXdr2cZvyvypWuGYT7U+9kAExUE7+T7r6G3C3A6L8MQ==
 
-"@framer/lintonye.data-grid-table@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.framer.com/@framer/lintonye.data-grid-table/-/@framer/lintonye.data-grid-table-1.7.0.tgz#8789ebf3f5c926c98d5d75fa87d6079767fe2d5d"
-  integrity sha512-/CVsRL2oNPFpZxaR1eKEZongwLHctSLgE5ZQ+JemZOpGPr6ubvS/j0rS1QmgprcTN/JyS5NND3VfZGnPZQ0uhQ==
+"@framer/lintonye.data-grid-table@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.framer.com/@framer/lintonye.data-grid-table/-/@framer/lintonye.data-grid-table-1.8.0.tgz#6db1a4e5762324e0b3fe14aa62cf103c456a740b"
+  integrity sha512-rNwKYTPanv8BYzeEzW2xJe3qKD6qpD2bwaBU0x25boZdFo38lOCcDjfS5GFATu1VoeyuCfb9ih2dSrUze4QefA==
   dependencies:
     papaparse "^5.1.0"
     react "^16.11.0"
