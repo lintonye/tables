@@ -66,8 +66,8 @@
                   "pageSize" : 10
                 },
                 "codeOverrideEnabled" : true,
-                "codeOverrideFile" : ".\/App.tsx",
-                "codeOverrideIdentifier" : ".\/App.tsx_TableMultiField",
+                "codeOverrideFile" : ".\/MultipleFieldsInOne.tsx",
+                "codeOverrideIdentifier" : ".\/MultipleFieldsInOne.tsx_TableMultiField",
                 "codeOverrideName" : "TableMultiField",
                 "constraintsLocked" : false,
                 "deviceType" : null,
@@ -218,8 +218,8 @@
                   "pageSize" : 10
                 },
                 "codeOverrideEnabled" : true,
-                "codeOverrideFile" : ".\/App.tsx",
-                "codeOverrideIdentifier" : ".\/App.tsx_TablePattern",
+                "codeOverrideFile" : ".\/Zebra.tsx",
+                "codeOverrideIdentifier" : ".\/Zebra.tsx_TablePattern",
                 "codeOverrideName" : "TablePattern",
                 "constraintsLocked" : false,
                 "deviceType" : null,
@@ -370,8 +370,8 @@
                   "pageSize" : 10
                 },
                 "codeOverrideEnabled" : true,
-                "codeOverrideFile" : ".\/App.tsx",
-                "codeOverrideIdentifier" : ".\/App.tsx_TableCheckboxes",
+                "codeOverrideFile" : ".\/Checkboxes.tsx",
+                "codeOverrideIdentifier" : ".\/Checkboxes.tsx_TableCheckboxes",
                 "codeOverrideName" : "TableCheckboxes",
                 "constraintsLocked" : false,
                 "deviceType" : null,
@@ -1561,8 +1561,8 @@
             "__class" : "CodeComponentNode",
             "aspectRatio" : null,
             "bottom" : null,
-            "centerAnchorX" : 0.5188106796116505,
-            "centerAnchorY" : 0.46808510638297873,
+            "centerAnchorX" : 0.4678398058252427,
+            "centerAnchorY" : 0.47739361702127658,
             "children" : [
 
             ],
@@ -1590,8 +1590,8 @@
               "pageSize" : 10
             },
             "codeOverrideEnabled" : true,
-            "codeOverrideFile" : ".\/App.tsx",
-            "codeOverrideIdentifier" : ".\/App.tsx_TableHoverActions",
+            "codeOverrideFile" : ".\/HoverActions.tsx",
+            "codeOverrideIdentifier" : ".\/HoverActions.tsx_TableHoverActions",
             "codeOverrideName" : "TableHoverActions",
             "constraintsLocked" : false,
             "deviceType" : null,
@@ -1611,7 +1611,7 @@
             "id" : "KrIoDtDKF",
             "intrinsicHeight" : 400,
             "intrinsicWidth" : 600,
-            "left" : 124,
+            "left" : 82,
             "locked" : false,
             "name" : null,
             "opacity" : 1,
@@ -1625,9 +1625,9 @@
             "radiusPerCorner" : false,
             "radiusTopLeft" : 0,
             "radiusTopRight" : 0,
-            "right" : 93,
+            "right" : 135,
             "rotation" : 0,
-            "top" : 152,
+            "top" : 159,
             "visible" : true,
             "width" : 607,
             "widthType" : 0
@@ -1790,9 +1790,9 @@
           {
             "__class" : "CodeComponentNode",
             "aspectRatio" : null,
-            "bottom" : 117,
+            "bottom" : 119,
             "centerAnchorX" : 0.50929368029739774,
-            "centerAnchorY" : 0.57845744680851063,
+            "centerAnchorY" : 0.57579787234042556,
             "children" : [
 
             ],
@@ -1821,8 +1821,8 @@
               "pageSize" : 10
             },
             "codeOverrideEnabled" : true,
-            "codeOverrideFile" : ".\/App.tsx",
-            "codeOverrideIdentifier" : ".\/App.tsx_TableGoogleFlights",
+            "codeOverrideFile" : ".\/ExpandableRow.tsx",
+            "codeOverrideIdentifier" : ".\/ExpandableRow.tsx_TableGoogleFlights",
             "codeOverrideName" : "TableGoogleFlights",
             "constraintsLocked" : false,
             "deviceType" : null,
