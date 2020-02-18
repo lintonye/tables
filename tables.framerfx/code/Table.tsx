@@ -1,16 +1,16 @@
-import * as React from "react"
+import * as React from "react";
 import {
   addPropertyControls,
   ControlType,
   RenderTarget,
   motion,
-  AnimatePresence
-} from "framer"
-import { useTable, Row, useExpanded, usePagination } from "react-table"
-import styled, { css } from "styled-components"
-import * as defaultData from "./defaultData.json"
-import * as Papa from "papaparse"
-import { getOverrideByComponentId } from "./overrides"
+  AnimatePresence,
+} from "framer";
+import { useTable, Row, useExpanded, usePagination } from "react-table";
+import styled, { css } from "styled-components";
+import * as defaultData from "./defaultData.json";
+import * as Papa from "papaparse";
+import { getOverrideByComponentId } from "./overrides";
 
 const Styles = styled.div`
   ${({
@@ -29,7 +29,7 @@ const Styles = styled.div`
     dividerColor,
     padding,
     cellBorderRadius,
-    gap
+    gap,
   }) => css`
     width: 100%;
     background: ${fill};
@@ -70,7 +70,7 @@ const Styles = styled.div`
       }
     }
   `}
-`
+`;
 function GridThumbnail({ size = 24 }) {
   return (
     <svg
@@ -90,25 +90,25 @@ function GridThumbnail({ size = 24 }) {
       <path d="M14 14H21V21H14z"></path>
       <path d="M3 14H10V21H3z"></path>
     </svg>
-  )
+  );
 }
 
 function getRowProps(row: Row, rowProps) {
   switch (typeof rowProps) {
     case "object":
-      return rowProps
+      return rowProps;
     case "function":
-      return rowProps(row)
+      return rowProps(row);
   }
 }
 
 function useInitialPageOptions(setPageSize, gotoPage, pageSize, pageIndex) {
   React.useEffect(() => {
-    setPageSize(pageSize)
-  }, [pageSize, setPageSize])
+    setPageSize(pageSize);
+  }, [pageSize, setPageSize]);
   React.useEffect(() => {
-    gotoPage(pageIndex)
-  }, [pageIndex, pageSize, gotoPage])
+    gotoPage(pageIndex);
+  }, [pageIndex, pageSize, gotoPage]);
 }
 
 function TableUI({
@@ -119,7 +119,7 @@ function TableUI({
   renderSubRow,
   pageSize,
   pageIndex,
-  onPageChange
+  onPageChange,
 }) {
   // Use the state and functions returned from useTable to build your UI
   const {
@@ -141,22 +141,22 @@ function TableUI({
     gotoPage,
     nextPage,
     previousPage,
-    setPageSize
+    setPageSize,
     // state: { pageIndex, pageSize }
   } = useTable(
     {
       columns,
       data,
-      initialState: { pageSize: 10 }
+      initialState: { pageSize: 10 },
     },
     useExpanded,
     usePagination
-  )
-  useInitialPageOptions(setPageSize, gotoPage, pageSize, pageIndex)
+  );
+  useInitialPageOptions(setPageSize, gotoPage, pageSize, pageIndex);
   React.useEffect(() => {
     typeof onPageChange === "function" &&
-      onPageChange({ pageIndex, pageCount, pageSize })
-  }, [onPageChange, pageCount, pageIndex, pageSize])
+      onPageChange({ pageIndex, pageCount, pageSize });
+  }, [onPageChange, pageCount, pageIndex, pageSize]);
   // Render the UI for your table
   return (
     <table {...getTableProps()}>
@@ -175,7 +175,7 @@ function TableUI({
       )}
       <tbody {...getTableBodyProps()}>
         {page.map(row => {
-          prepareRow(row)
+          prepareRow(row);
           return (
             <>
               <motion.tr {...row.getRowProps()} {...getRowProps(row, rowProps)}>
@@ -184,7 +184,7 @@ function TableUI({
                     <td {...cell.getCellProps()} align={cell.column.align}>
                       {cell.render("Cell")}
                     </td>
-                  )
+                  );
                 })}
               </motion.tr>
               {row.isExpanded && (
@@ -193,27 +193,27 @@ function TableUI({
                 </tr>
               )}
             </>
-          )
+          );
         })}
       </tbody>
     </table>
-  )
+  );
 }
 
 function createColumns(data, showDefaultColumns = true, columnsOverride = []) {
   if (Array.isArray(data) && data.length > 0) {
     // infer columns from the first row
-    const row = data[0]
+    const row = data[0];
     const defaultColumn = accessor => ({
       Header: accessor,
       accessor,
-      align: Number.isFinite(row[accessor]) ? "right" : "left"
-    })
+      align: Number.isFinite(row[accessor]) ? "right" : "left",
+    });
     return Array.isArray(columnsOverride)
       ? [
           ...columnsOverride.map(c => ({
             ...defaultColumn(c.accessor),
-            ...c
+            ...c,
           })),
           ...(showDefaultColumns
             ? Object.keys(row)
@@ -221,46 +221,47 @@ function createColumns(data, showDefaultColumns = true, columnsOverride = []) {
                   key => columnsOverride.findIndex(c => c.accessor === key) < 0
                 )
                 .map(defaultColumn)
-            : [])
+            : []),
         ]
-      : Object.keys(row).map(defaultColumn)
+      : Object.keys(row).map(defaultColumn);
   }
-  return []
+  return [];
 }
 
 function useLoadConvertedData(dataUrl, rowConverter) {
-  const [data, setData] = React.useState(null)
+  const [data, setData] = React.useState(null);
   React.useEffect(() => {
     async function loadData() {
-      let finalData = defaultData
+      let finalData = defaultData;
       if (dataUrl) {
-        const response = await fetch(dataUrl)
+        const response = await fetch(dataUrl);
         if (dataUrl.endsWith(".json")) {
-          const d = await response.json()
-          finalData = d
+          const d = await response.json();
+          finalData = d;
         } else {
           //parse as csv
           const results = Papa.parse(await response.text(), {
             header: true,
             dynamicTyping: true,
-            skipEmptyLines: true
-          })
-          finalData = results.data
+            skipEmptyLines: true,
+          });
+          finalData = results.data;
         }
       }
       setData(
         typeof rowConverter === "function" && Array.isArray(finalData)
           ? finalData.map(rowConverter)
           : finalData
-      )
+      );
     }
-    loadData()
-  }, [dataUrl, rowConverter])
-  return data
+    loadData();
+  }, [dataUrl, rowConverter]);
+  return data;
 }
 
 function TableWithData(props) {
   const {
+    data,
     dataUrl,
     columns,
     showDefaultColumns = true,
@@ -273,20 +274,22 @@ function TableWithData(props) {
     pageIndex,
     onPageChange,
     ...rest
-  } = props
-  const data = useLoadConvertedData(dataUrl, rowConverter)
+  } = props;
+  const dataFromUrl = useLoadConvertedData(dataUrl, rowConverter);
+
+  const dataFinal = data || dataFromUrl;
 
   const mergedColumns = React.useMemo(
-    () => createColumns(data, showDefaultColumns, columns),
-    [data, columns]
-  )
-  return data === null ? (
+    () => createColumns(dataFinal, showDefaultColumns, columns),
+    [dataFinal, columns]
+  );
+  return dataFinal === null ? (
     <div>Loading data...</div>
   ) : (
     <Styles {...rest}>
       <TableUI
         columns={mergedColumns}
-        data={data}
+        data={dataFinal}
         rowProps={rowProps}
         header={header}
         renderSubRow={row =>
@@ -297,18 +300,18 @@ function TableWithData(props) {
         onPageChange={onPageChange}
       />
     </Styles>
-  )
+  );
 }
 
 function TableOnCanvas(props) {
-  const override = getOverrideByComponentId(props.id)
+  const override = getOverrideByComponentId(props.id);
   const mergedProps =
-    typeof override === "function" ? { ...props, ...override() } : props
+    typeof override === "function" ? { ...props, ...override() } : props;
 
-  return <TableWithData {...mergedProps} />
+  return <TableWithData {...mergedProps} />;
 }
 function TableInPreview(props) {
-  return <TableWithData {...props} />
+  return <TableWithData {...props} />;
 }
 
 function Table(props) {
@@ -318,23 +321,23 @@ function Table(props) {
     <TableOnCanvas {...props} />
   ) : (
     <TableInPreview {...props} />
-  )
+  );
 }
 
 export function TableClassic(props) {
-  return <Table {...props} />
+  return <Table {...props} />;
 }
 
 export function TableContrastHeading(props) {
-  return <Table {...props} />
+  return <Table {...props} />;
 }
 
 export function TableClean(props) {
-  return <Table {...props} />
+  return <Table {...props} />;
 }
 
 export function TableMinimal(props) {
-  return <Table {...props} />
+  return <Table {...props} />;
 }
 
 export const Presets = {
@@ -355,7 +358,7 @@ export const Presets = {
     dividerColor: "#d2cfd8",
     padding: 8,
     gap: 0,
-    cellBorderRadius: 0
+    cellBorderRadius: 0,
   },
   "contrast-heading": {
     component: TableContrastHeading,
@@ -374,7 +377,7 @@ export const Presets = {
     dividerColor: "#d2cfd8",
     padding: 10,
     gap: 6,
-    cellBorderRadius: 6
+    cellBorderRadius: 6,
   },
   clean: {
     component: TableClean,
@@ -393,7 +396,7 @@ export const Presets = {
     dividerColor: "#d2cfd8",
     padding: 8,
     gap: 0,
-    cellBorderRadius: 0
+    cellBorderRadius: 0,
   },
   minimal: {
     component: TableMinimal,
@@ -412,33 +415,33 @@ export const Presets = {
     dividerColor: "#d2cfd8",
     padding: 8,
     gap: 0,
-    cellBorderRadius: 0
-  }
-}
+    cellBorderRadius: 0,
+  },
+};
 
 function setDefaultValue(preset, propertyControls) {
   Object.keys(preset).forEach(p => {
-    const propControl = propertyControls[p]
+    const propControl = propertyControls[p];
     if (propControl) {
-      propControl.defaultValue = preset[p]
+      propControl.defaultValue = preset[p];
     }
-  })
-  return propertyControls
+  });
+  return propertyControls;
 }
 
 Object.keys(Presets).forEach(k => {
-  const preset = Presets[k]
+  const preset = Presets[k];
   preset.component.defaultProps = {
     width: 600,
-    height: 400
-  }
+    height: 400,
+  };
   addPropertyControls(
     preset.component,
     setDefaultValue(preset, {
       dataUrl: {
         title: "Data",
         type: ControlType.File,
-        allowedFileTypes: ["json", "csv"]
+        allowedFileTypes: ["json", "csv"],
       },
       //   preset: {
       //     title: "Preset",
@@ -448,24 +451,24 @@ Object.keys(Presets).forEach(k => {
       fill: {
         title: "Fill",
         type: ControlType.Color,
-        defaultValue: "transparent"
+        defaultValue: "transparent",
       },
       fontSize: {
         title: "Font size",
         type: ControlType.Number,
         min: 8,
         max: 60,
-        defaultValue: 12
+        defaultValue: 12,
       },
       color: {
         title: "Text",
         type: ControlType.Color,
-        defaultValue: "black"
+        defaultValue: "black",
       },
       header: {
         title: "Header",
         type: ControlType.Boolean,
-        defaultValue: true
+        defaultValue: true,
       },
       headerFontSize: {
         title: "Header Font",
@@ -473,19 +476,19 @@ Object.keys(Presets).forEach(k => {
         min: 8,
         max: 60,
         defaultValue: 12,
-        hidden: ({ header }) => !header
+        hidden: ({ header }) => !header,
       },
       headerColor: {
         title: "Header FG",
         type: ControlType.Color,
         defaultValue: "black",
-        hidden: ({ header }) => !header
+        hidden: ({ header }) => !header,
       },
       headerBgColor: {
         title: "Header BG",
         type: ControlType.Color,
         defaultValue: "transparent",
-        hidden: ({ header }) => !header
+        hidden: ({ header }) => !header,
       },
       headerDividerWidth: {
         title: "Header Divider",
@@ -493,43 +496,43 @@ Object.keys(Presets).forEach(k => {
         min: 0,
         max: 4,
         defaultValue: 1,
-        hidden: ({ header }) => !header
+        hidden: ({ header }) => !header,
       },
       headerDividerColor: {
         title: "Header Divider",
         type: ControlType.Color,
         defaultValue: "#DDD",
-        hidden: ({ header }) => !header
+        hidden: ({ header }) => !header,
       },
       borderWidth: {
         title: "Border",
         type: ControlType.Number,
         min: 0,
         max: 4,
-        defaultValue: 1
+        defaultValue: 1,
       },
       borderColor: {
         title: "Border",
         type: ControlType.Color,
-        defaultValue: "#DDD"
+        defaultValue: "#DDD",
       },
       dividerType: {
         title: "Divider",
         type: ControlType.Enum,
         options: ["both", "horizontal", "vertical"],
-        defaultValue: "both"
+        defaultValue: "both",
       },
       dividerWidth: {
         title: "Divider",
         type: ControlType.Number,
         min: 0,
         max: 4,
-        defaultValue: 1
+        defaultValue: 1,
       },
       dividerColor: {
         title: "Divider",
         type: ControlType.Color,
-        defaultValue: "#DDD"
+        defaultValue: "#DDD",
       },
       padding: {
         title: "Padding",
@@ -537,7 +540,7 @@ Object.keys(Presets).forEach(k => {
         min: 0,
         max: 40,
         step: 2,
-        defaultValue: 8
+        defaultValue: 8,
       },
       gap: {
         title: "Gap",
@@ -545,27 +548,27 @@ Object.keys(Presets).forEach(k => {
         min: 0,
         max: 40,
         step: 2,
-        defaultValue: 0
+        defaultValue: 0,
       },
       cellBorderRadius: {
         title: "Radius",
         type: ControlType.Number,
         min: 0,
         max: 40,
-        defaultValue: 0
+        defaultValue: 0,
       },
       pageSize: {
         title: "Page Size",
         type: ControlType.Number,
         step: 10,
         min: 10,
-        max: 100
+        max: 100,
       },
       pageIndex: {
         title: "Page",
         type: ControlType.Number,
-        min: 0
-      }
+        min: 0,
+      },
       // overrideFile: {
       //   title: "File",
       //   type: ControlType.String,
@@ -577,5 +580,5 @@ Object.keys(Presets).forEach(k => {
       //   // defaultValue: "Table"
       // }
     })
-  )
-})
+  );
+});

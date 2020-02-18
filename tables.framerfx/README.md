@@ -31,6 +31,8 @@ In addition to more controls for the styles, an exciting possibility is that we 
 Find me on [Twitter](https://twitter.com/lintonye). Share with me what you build, I'd be thrilled to see it!
 
 # Change log
+- Feb 18, 2020
+  - Allow overriding `data` prop
 - Feb 12, 2020
   - Fix an issue that occurs after installing another package
   - Make the package work in Framer Beta 
