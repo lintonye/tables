@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Override, Data } from "framer"
-import { url } from "framer/resource"
 
 // Learn more: https://framer.com/docs/overrides/
 
@@ -28,7 +27,7 @@ export function Add(props): Override {
 export function Remove(props): Override {
     return {
         onTap() {
-            appState.rows = appState.rows.slice(0, appState.rows.length - 2)
+            appState.rows = appState.rows.slice(0, appState.rows.length - 1)
         },
     }
 }
