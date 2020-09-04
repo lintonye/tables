@@ -14,7 +14,7 @@
 	},
 	"author": "Linton Ye",
 	"dependencies": {
-		"papaparse": "^5.1.0",
+		"papaparse": "^5.2.0",
 		"react": "^16.11.0",
 		"react-dom": "^16.11.0",
 		"react-table": "^7.0.0-rc.15",
